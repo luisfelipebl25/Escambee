@@ -9,6 +9,14 @@ class User
     @wishlist = []
   end
 
+  def wishes?(game)
+    wishlist.include? game
+  end
+
+  def has?(game)
+    ownlist.include? game
+  end
+
   def accepted?(proposal)
     answers.find { |answer| answer.proposal == proposal }&.answer
   end
