@@ -13,8 +13,14 @@ class User
     wishlist.include? game
   end
 
-  def has?(game)
+  def owns?(game)
     ownlist.include? game
+  end
+
+  def exchange(owned, wished)
+    wishlist.delete(wished)
+    ownlist.delete(owned)
+    ownlist.push wished
   end
 
   def accepted?(proposal)

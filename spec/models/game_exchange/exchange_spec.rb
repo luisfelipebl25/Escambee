@@ -40,4 +40,41 @@ RSpec.describe GameExchange::Exchange do
       expect(subject).to_not be_matched
     end
   end
+
+  context 'Numa troca bem-sucedida' do
+    before(:each) do
+      proposal.answer(user_one, true)
+      proposal.answer(user_two, true)
+
+      subject.exchange
+    end
+
+    describe 'Usuário 1' do
+      it 'não deseja mais jogo B' do
+        expect(user_one.wishlist).to_not include(proposal.game_one)
+      end
+
+      it 'não possui mais jogo A' do
+        expect(user_one.ownlist).to_not include(proposal.game_one)
+      end
+
+      it 'possui jogo B' do
+        expect(user_one.ownlist).to include(proposal.game_two)
+      end
+    end
+
+    describe 'Usuário 2' do
+      it 'não deseja mais jogo A' do
+        expect(user_two.wishlist).to_not include(proposal.game_one)
+      end
+
+      it 'não possui mais jogo B' do
+        expect(user_two.ownlist).to_not include(proposal.game_two)
+      end
+
+      it 'possui jogo A' do
+        expect(user_two.ownlist).to include(proposal.game_one)
+      end
+    end
+  end
 end

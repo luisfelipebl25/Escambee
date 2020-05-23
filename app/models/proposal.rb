@@ -17,8 +17,8 @@ class Proposal
   end
 
   def able_to_accept?(user)
-    return true if user.wishes?(game_one) && user.has?(game_two)
-    return true if user.wishes?(game_two) && user.has?(game_one)
+    return true if user.wishes?(game_one) && user.owns?(game_two)
+    return true if user.wishes?(game_two) && user.owns?(game_one)
 
     false
   end
