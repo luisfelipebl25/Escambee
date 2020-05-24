@@ -36,6 +36,12 @@ RSpec.describe GameExchange::Exchange do
     end
   end
 
+  describe 'descobertas de propostas' do
+    it 'varre as propostas em busca daquelas que o usuário pode aceitar' do
+      expect(user_one.proposals([proposal])).to contain_exactly(proposal)
+    end
+  end
+
   describe 'Proposal Answer' do
     describe 'direction' do
       it 'forward' do

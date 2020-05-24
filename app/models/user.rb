@@ -15,6 +15,10 @@ class User
     wishlist.include? game
   end
 
+  def proposals(proposals)
+    proposals.select { |proposal| proposal.able_to_accept? self }
+  end
+
   def owns?(game)
     ownlist.include? game
   end

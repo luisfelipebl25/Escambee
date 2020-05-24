@@ -18,8 +18,6 @@ class Proposal
     game_one == other.game_one && game_two == other.game_two
   end
 
-  private
-
   def able_to_accept?(user)
     return true if user.wishes?(game_one) && user.owns?(game_two)
     return true if user.wishes?(game_two) && user.owns?(game_one)
