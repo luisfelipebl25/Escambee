@@ -6,13 +6,26 @@ module GameExchange
       @proposal = proposal
     end
 
+    def users
+      [@user_one, @user_two]
+    end
+
     def matched?
-      @user_one.accepted?(@proposal) && @user_two.accepted?(@proposal)
+      all_accepted? && no_conflict?
+    end
+
+    def all_accepted?
+      users.all? { |user| user.accepted?(@proposal) }
+    end
+
+    def no_conflict?
+      @user_one.answer(@proposal).direction != @user_two.answer(@proposal).direction
     end
 
     def exchange
-      @user_one.do_exchange(@proposal)
-      @user_two.do_exchange(@proposal)
+      return false unless matched?
+
+      users.each { |user| user.do_exchange(@proposal) }
     end
   end
 end

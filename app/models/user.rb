@@ -26,7 +26,7 @@ class User
   def do_exchange(proposal)
     return unless accepted?(proposal)
 
-    if answer(proposal).direction == :forward
+    if answer(proposal).forward?
       exchange(proposal.game_one, proposal.game_two)
     else
       exchange(proposal.game_two, proposal.game_one)

@@ -18,4 +18,8 @@ class ProposalAnswer
       :backward
     end
   end
+
+  def forward?
+    @direction == :forward
+  end
 end
