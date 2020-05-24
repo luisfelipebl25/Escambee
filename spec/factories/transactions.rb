@@ -1,9 +1,12 @@
 FactoryBot.define do
   factory :transaction do
-    user { build(:user, ownlist: [1], wishlist: [2]) }
-    given { 1 }
-    received { 2 }
+    transient do
+      games { build_list :game, 2 }
+    end
+    user { build(:user, owns: [games.first], wishes: [games.second]) }
+    given { games.first }
+    received { games.second }
 
-    initialize_with { Transaction.new(user, given, received) }
+    initialize_with { new(user, given, received) }
   end
 end

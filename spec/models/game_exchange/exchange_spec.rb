@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe GameExchange::Exchange do
   let(:games) { build_list :game, 2 }
   let(:proposal) { build :proposal, games: games }
-  let(:user_one) { build :user, ownlist: [proposal.game_one], wishlist: [proposal.game_two] }
-  let(:user_two) { build :user, ownlist: [proposal.game_two], wishlist: [proposal.game_one] }
+  let(:user_one) { build :user, owns: [proposal.game_one], wishes: [proposal.game_two] }
+  let(:user_two) { build :user, owns: [proposal.game_two], wishes: [proposal.game_one] }
 
   subject { described_class.new(user_one, user_two, proposal) }
 

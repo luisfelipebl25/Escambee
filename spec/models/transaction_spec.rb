@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Transaction do
-  subject { build(:transaction) }
+  let(:games) { build_list :game, 2 }
+  subject { build(:transaction, games: games) }
 
   describe '#execute' do
     describe 'é idempotente' do
@@ -26,12 +27,12 @@ RSpec.describe Transaction do
 
       it 'remove o jogo doado dos jogos que possui' do
         subject.execute
-        expect(subject.user.ownlist).to_not include(1)
+        expect(subject.user.ownlist).to_not include(games.first)
       end
 
       it 'adiciona o jogo recebido à lista de jogos que possui' do
         subject.execute
-        expect(subject.user.ownlist).to include(2)
+        expect(subject.user.ownlist).to include(games.second)
       end
 
       it 'adiciona a transação ao final da lista de transações do usuário' do

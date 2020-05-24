@@ -6,6 +6,7 @@ module GameExchange
 
     def proposals
       proposals = []
+
       @games.each do |game|
         @games.each do |another_game|
           if game != another_game && proposable(game, another_game)
@@ -14,7 +15,7 @@ module GameExchange
         end
       end
 
-      proposals
+      proposals.uniq
     end
 
     def proposable(game, another_game)

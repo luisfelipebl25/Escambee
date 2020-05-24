@@ -1,6 +1,6 @@
 class Wishlist
   include Enumerable
-  delegate :empty?, to: :list
+  delegate :empty?, :delete, to: :list
 
   def initialize(user)
     @list = []
