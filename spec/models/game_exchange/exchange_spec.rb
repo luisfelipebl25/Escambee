@@ -1,11 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe GameExchange::Exchange do
-  let(:proposal) { build :proposal }
+  let(:games) { build_list :game, 2 }
+  let(:proposal) { build :proposal, games: games }
   let(:user_one) { build :user, ownlist: [proposal.game_one], wishlist: [proposal.game_two] }
   let(:user_two) { build :user, ownlist: [proposal.game_two], wishlist: [proposal.game_one] }
 
   subject { described_class.new(user_one, user_two, proposal) }
+
+  describe 'geração de Propostas' do
+    it 'gera uma proposta quando há uma possibilidade de troca' do
+      user_one.ownlist.push games.first
+      user_one.wishlist.push games.second
+
+      user_two.ownlist.push games.second
+      user_two.wishlist.push games.first
+
+      expect(GameExchange::Match.new(games).proposals.first).to eq(proposal)
+    end
+  end
 
   context 'Usuário não possui jogo' do
     let(:invalid_user) { build :user, ownlist: [], wishlist: [proposal.game_two] }
