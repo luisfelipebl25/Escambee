@@ -25,7 +25,7 @@ module GameExchange
     def exchange
       return false unless matched?
 
-      users.each { |user| user.do_exchange(@proposal) }
+      users.each { |user| user.exchange(@proposal) }
     end
   end
 end

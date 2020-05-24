@@ -19,21 +19,10 @@ class User
     ownlist.include? game
   end
 
-  def exchange(owned, wished)
-    wishlist.delete(wished)
-    ownlist.delete(owned)
-    ownlist.push wished
-    exchanges.push Transaction.new(self, owned, wished)
-  end
-
-  def do_exchange(proposal)
+  def exchange(proposal)
     return unless accepted?(proposal)
 
-    if answer(proposal).forward?
-      exchange(proposal.game_one, proposal.game_two)
-    else
-      exchange(proposal.game_two, proposal.game_one)
-    end
+    answer(proposal).transaction.execute
   end
 
   def answer(proposal)
@@ -41,7 +30,7 @@ class User
   end
 
   def accepted?(proposal)
-    answer(proposal)&.answer
+    answer(proposal)&.accepted?
   end
 
   def ==(other)
