@@ -11,16 +11,8 @@ module GameExchange
     end
 
     def exchange
-      game_one = @proposal.game_one
-      game_two = @proposal.game_two
-
-      if @user_one.owns?(game_one) && @user_two.owns?(game_two)
-        @user_one.exchange(game_one, game_two)
-        @user_two.exchange(game_two, game_one)
-      elsif @user_two.owns?(game_two) && @user_two.owns?(game_one)
-        @user_one.exchange(game_two, game_one)
-        @user_two.exchange(game_one, game_two)
-      end
+      @user_one.do_exchange(@proposal)
+      @user_two.do_exchange(@proposal)
     end
   end
 end

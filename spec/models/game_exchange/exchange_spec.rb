@@ -23,6 +23,20 @@ RSpec.describe GameExchange::Exchange do
     end
   end
 
+  describe 'Proposal Answer' do
+    describe 'direction' do
+      it 'forward' do
+        proposal.answer(user_one, true)
+        expect(user_one.answers.first.direction).to eq(:forward)
+      end
+
+      it 'backward' do
+        proposal.answer(user_two, true)
+        expect(user_two.answers.first.direction).to eq(:backward)
+      end
+    end
+  end
+
   context 'Duas partes aceitam' do
     it 'uma troca é possível' do
       proposal.answer(user_one, true)

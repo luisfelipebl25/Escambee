@@ -23,8 +23,22 @@ class User
     ownlist.push wished
   end
 
+  def do_exchange(proposal)
+    return unless accepted?(proposal)
+
+    if answer(proposal).direction == :forward
+      exchange(proposal.game_one, proposal.game_two)
+    else
+      exchange(proposal.game_two, proposal.game_one)
+    end
+  end
+
+  def answer(proposal)
+    answers.find { |answer| answer.proposal == proposal }
+  end
+
   def accepted?(proposal)
-    answers.find { |answer| answer.proposal == proposal }&.answer
+    answer(proposal)&.answer
   end
 
   def ==(other)
