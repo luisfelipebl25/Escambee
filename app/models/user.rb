@@ -6,9 +6,9 @@ class User
 
   def initialize
     @answers = []
-    @ownlist = []
-    @wishlist = Wishlist.new
-    @exchanges = Ownlist.new
+    @ownlist = Ownlist.new self
+    @wishlist = Wishlist.new self
+    @exchanges = []
   end
 
   def wishes?(game)

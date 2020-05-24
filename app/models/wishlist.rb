@@ -1,13 +1,20 @@
 class Wishlist
   include Enumerable
-  delegate :push, :empty?, to: :list
+  delegate :empty?, to: :list
 
-  def initialize
+  def initialize(user)
     @list = []
+    @user = user
   end
 
   def each(&block)
     @list.each(&block)
+  end
+
+  def push(game)
+    @list.push game
+
+    game.who_wishes.push @user
   end
 
   private
