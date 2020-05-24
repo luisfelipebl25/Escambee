@@ -99,8 +99,6 @@ RSpec.describe GameExchange::Exchange do
       subject.exchange
     end
 
-    # TODO: Gerar uma transação tanto para usuário 1 como para usuário 2
-
     describe 'Usuário 1' do
       it 'não deseja mais jogo B' do
         expect(user_one.wishlist).to_not include(proposal.game_two)
@@ -112,6 +110,20 @@ RSpec.describe GameExchange::Exchange do
 
       it 'possui jogo B' do
         expect(user_one.ownlist).to include(proposal.game_two)
+      end
+
+      describe 'gerou uma transação Usuário 1: Jogo A <-> Jogo B' do
+        it 'uma transação foi gerada' do
+          expect(user_one.exchanges).to_not be_empty
+        end
+
+        it 'que doou jogo A' do
+          expect(user_one.exchanges.first.given).to eq(proposal.game_one)
+        end
+
+        it 'em troca de jogo B' do
+          expect(user_one.exchanges.first.received).to eq(proposal.game_two)
+        end
       end
     end
 
@@ -126,6 +138,20 @@ RSpec.describe GameExchange::Exchange do
 
       it 'possui jogo A' do
         expect(user_two.ownlist).to include(proposal.game_one)
+      end
+
+      describe 'gerou uma transação Usuário 2: Jogo B <-> Jogo A' do
+        it 'uma transação foi gerada' do
+          expect(user_two.exchanges).to_not be_empty
+        end
+
+        it 'que doou jogo B' do
+          expect(user_two.exchanges.first.given).to eq(proposal.game_two)
+        end
+
+        it 'em troca de jogo A' do
+          expect(user_two.exchanges.first.received).to eq(proposal.game_one)
+        end
       end
     end
   end

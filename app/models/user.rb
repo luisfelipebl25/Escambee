@@ -2,11 +2,13 @@ class User
   attr_accessor :name
   attr_accessor :ownlist, :wishlist
   attr_accessor :answers
+  attr_accessor :exchanges
 
   def initialize
     @answers = []
     @ownlist = []
     @wishlist = []
+    @exchanges = []
   end
 
   def wishes?(game)
@@ -21,6 +23,7 @@ class User
     wishlist.delete(wished)
     ownlist.delete(owned)
     ownlist.push wished
+    exchanges.push Transaction.new(self, owned, wished)
   end
 
   def do_exchange(proposal)
