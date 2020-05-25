@@ -15,7 +15,7 @@ RSpec.describe GameExchange::Match do
         another_user.ownlist.push games.second
         another_user.wishlist.push games.first
 
-        expect(subject.proposals).to include(Proposal.new games.first, games.second)
+        expect(subject.proposals).to include(Proposal.new(games.first, games.second))
       end
     end
   end

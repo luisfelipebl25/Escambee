@@ -6,17 +6,19 @@ RSpec.describe Transaction do
 
   describe '#execute' do
     describe 'é idempotente' do
-      before(:each) { subject.execute }
-      it 'não altera a lista de desejos' do
-        expect { subject.execute }.to_not change(subject.user, :wishlist)
-      end
+      context 'numa segunda execução da transação' do
+        before(:each) { subject.execute }
+        it 'não altera a lista de desejos' do
+          expect { subject.execute }.to_not change(subject.user, :wishlist)
+        end
 
-      it 'não altera os jogos que ele tem' do
-        expect { subject.execute }.to_not change(subject.user, :ownlist)
-      end
+        it 'não altera os jogos que ele tem' do
+          expect { subject.execute }.to_not change(subject.user, :ownlist)
+        end
 
-      it 'não se adiciona à lista de transações novamente' do
-        expect { subject.execute }.to_not change(subject.user, :wishlist)
+        it 'não se adiciona à lista de transações novamente' do
+          expect { subject.execute }.to_not change(subject.user, :wishlist)
+        end
       end
     end
 
