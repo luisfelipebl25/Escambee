@@ -10,7 +10,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   
-
   <div class="header">
     <% unless !user_signed_in? %>
       <nav class="navbar border-bottom navbar-expand-lg navbar-light bg-light">
@@ -20,8 +19,8 @@
               <i class="far fa-user mr-2"></i>
             </span>
             
-              <div><%= link_to "Editar informações de conta", new_user_registration_path, class: "nav-item nav-link" %></div>
-              <%= link_to "Encerrar sessão", new_user_session_path, class: "nav-item nav-link" %>   
+            <div><%= link_to "Editar informações de conta", edit_user_registration_path, class: "nav-item nav-link" %></div>
+            <%= link_to "Encerrar sessão", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>   
           </div>
         </div>
       </nav>
@@ -29,10 +28,12 @@
 
     <div class="container main-menu">
       <div class="row align-items-center">
+        
         <div class="col-lg-3 col-md-12 col-content d-flex align-items-center justify-content-md-center">
           <%= inline_svg_tag("bee.svg", class: "logo-img") %>
-          <h2 class="logotipo my-auto text-primary ml-2">Escambee</h2>
+          <h2><%= link_to 'Escambee', root_path, class: "logotipo my-auto text-primary ml-2" %></h2>
         </div>
+       
         <div class="col-lg-6 col-md-7 col-content">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Procurar jogo..." 
@@ -53,7 +54,7 @@
               <div class="text-muted">10</div>
             </div>
           <i class="far fa-user fa-2x ml-4"></i>
-          <div class="transactions_count"><span>10</span></div>
+          
             <div class="d-flex flex-column">
               <div><%= link_to 'Perfil', profile_path %> </div>
               <div class="text-muted">2 jogos</div>
@@ -75,7 +76,15 @@
   </div>
   
   <body>
-    <%= yield %>
+    <% if devise_controller? %>
+      <div class="modal-dialog modal-dialog-centered text-center">
+        <div class="col-md-12 col-sm-12 p-4 mx-auto container-wrapper modal-content">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">

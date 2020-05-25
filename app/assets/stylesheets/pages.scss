@@ -4,6 +4,22 @@ body {
   font-family: 'Rubik', sans-serif !important;
 } 
 
+a:hover {
+  text-decoration: none !important;
+}
+
+.modal-content {
+  h2 {
+    margin-bottom: 20px;
+    color: #0e8ce4;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
 .header {
   margin-bottom: 15px;
 
@@ -13,17 +29,18 @@ body {
 }
 
 .card-img-top {
-  
   height: 250px;
   max-height: 250px;
   object-fit: cover;
   object-position: center;
 }
 
+.card, .modal-content {
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  border: solid 1px #e8e8e8 !important;
+}
 
 .card {
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
-  border: solid 1px #e8e8e8;
   margin: 10px 0 20px 0;
   .card-title {
     font-size:18px;
@@ -65,7 +82,13 @@ a.text-primary:hover, a.text-primary:focus, a.text-primary:link {
   a {
     font-size: 18px;
     color: #000;
+    text-decoration: none !important;
+
+    &:hover {
+      color: #0e8ce4 !important;
+    }
   }
+
 
   .d-flex {
     margin-left: 0.8rem;
@@ -74,29 +97,6 @@ a.text-primary:hover, a.text-primary:focus, a.text-primary:link {
       margin-top: -2px !important;
     }
   }
-}
-
-.transactions_count {
-  position: absolute;
-  bottom: 1px;
-  right: 50px;
-  width: 20px;
-  height: 20px;
-  background: #0e8ce4;
-  border-radius: 50%;
-  text-align: center;
-}
-
-.transactions_count span {
-  display: block;
-  line-height: 20px;
-  font-size: 10px;
-  color: #FFFFFF;
-  -webkit-transform: translateY(1px);
-  -moz-transform: translateY(1px);
-  -ms-transform: translateY(1px);
-  -o-transform: translateY(1px);
-  transform: translateY(1px);
 }
 
 .bg-light {
@@ -140,7 +140,7 @@ a.text-primary:hover, a.text-primary:focus, a.text-primary:link {
     color: rgba(0, 0, 0, 0.8) !important;
 
     div &:nth-child(1) {
-      margin-right: 25px;
+      margin-right: 20px;
     }
   
     :not(:last-child) {
