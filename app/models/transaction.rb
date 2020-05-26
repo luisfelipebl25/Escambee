@@ -10,7 +10,6 @@ class Transaction
 
   def execute
     return false if executed?
-
     @user.wishlist.delete(@received)
     @user.ownlist.delete(@given)
     @user.ownlist.push @received
