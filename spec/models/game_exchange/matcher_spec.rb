@@ -156,4 +156,26 @@ RSpec.describe GameExchange::Matcher do
       end
     end
   end
+
+  describe '#confirmed_matchs' do
+    it 'retorna os matches que foram combinados por ambas as partes' do
+      user.ownlist.push games.first
+      user.wishlist.push games.second
+
+      another_user.ownlist.push games.second
+      another_user.wishlist.push games.first
+
+      proposals = subject.proposals
+
+      user.proposals(proposals).first.answer(user, true)
+      another_user.proposals(proposals).first.answer(another_user, true)
+
+      matches = subject.generate_matches(proposals)
+
+      user.matches(matches).first.answer(user, true)
+      another_user.matches(matches).first.answer(another_user, true)
+
+      expect(subject.confirmed_matches(matches).count).to eq(1)
+    end
+  end
 end

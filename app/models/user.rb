@@ -1,11 +1,12 @@
 class User
   attr_accessor :name
   attr_accessor :ownlist, :wishlist
-  attr_accessor :answers
+  attr_accessor :proposal_answers, :match_answers
   attr_accessor :exchanges
 
   def initialize
-    @answers = []
+    @proposal_answers = []
+    @match_answers = []
     @ownlist = Ownlist.new self
     @wishlist = Wishlist.new self
     @exchanges = []
@@ -19,6 +20,10 @@ class User
     proposals.select { |proposal| proposal.able_to_accept? self }
   end
 
+  def matches(matches)
+    matches.select { |match| match.users.include? self }
+  end
+
   def owns?(game)
     ownlist.include? game
   end
@@ -29,8 +34,8 @@ class User
     answer(proposal).transaction.execute
   end
 
-  def answer(proposal)
-    answers.find { |answer| answer.proposal == proposal }
+  def answer(request)
+    proposal_answer(request) || match_answer(request)
   end
 
   def accepted?(proposal)
@@ -39,5 +44,17 @@ class User
 
   def ==(other)
     name == other.name
+  end
+
+  private
+
+  def proposal_answer(proposal)
+    return false unless proposal.is_a? Proposal
+
+    proposal_answers.find { |answer| answer.proposal == proposal }
+  end
+
+  def match_answer(match)
+    match_answers.find { |answer| answer.match == match }
   end
 end

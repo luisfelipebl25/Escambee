@@ -25,7 +25,7 @@ RSpec.describe Proposal do
 
     context 'Usuário tem um jogo e deseja outro' do
       it 'adiciona a resposta no histórico do usuário' do
-        expect { proposal.answer(user_one, true) }.to change(user_one.answers, :count).by(1)
+        expect { proposal.answer(user_one, true) }.to change(user_one.proposal_answers, :count).by(1)
       end
 
       it 'adciona a resposta nas respostas da proposta' do

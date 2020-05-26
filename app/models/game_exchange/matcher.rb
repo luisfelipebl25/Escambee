@@ -38,5 +38,9 @@ module GameExchange
     def has_matches?(proposal)
       proposal.answers.any?(&:forward?) && proposal.answers.any?(&:backward?)
     end
+
+    def confirmed_matches(matches)
+      matches.select(&:confirmed?)
+    end
   end
 end

@@ -12,7 +12,7 @@ class Proposal
     return false if answers.any? { |ans| ans.user == user }
 
     proposal_answer = ProposalAnswer.new(self, user, answer)
-    user.answers.push proposal_answer
+    user.proposal_answers.push proposal_answer
     answers.push proposal_answer
 
     true
