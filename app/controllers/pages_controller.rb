@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def search
     search_params
     @games = GiantBomb::Search.new().query(@search).resources('game').fetch
+    @results = Kaminari.paginate_array(@games).page(params[:page]).per(8)
   end 
 
   private

@@ -1,18 +1,28 @@
 <div class="container">
   <div class="row">
-    <% @games.each do |game| %>
+    <% @results.each do |game| %>
       <div class="col-md-3 col-6">
         <div class="card">
           <%= image_tag "#{game['image']['original_url']}", class: 'card-img-top' %>
           <div class="card-body">
             <h5 class="card-title"><%= game['name']%></h5>
-            <p class="card-text"><%= game['deck'] %></p>
+          
             <p><%= game['cover'] %></p>
-            <button type="button" class="btn btn-primary">Quero</button>
-            <button type="button" class="btn btn-warning">Tenho</button>
+            <% if user_signed_in? %>
+              <%= link_to 'Quero', '', class: 'btn btn-primary'%>
+              <%= link_to 'Tenho', '', class: 'btn btn-warning'%>
+            <% else %>
+              <p class="text-muted">
+                <%= link_to 'Entre', new_user_session_path%> ou 
+                <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+              </p>
+            <% end %>      
           </div>
        </div>
       </div>
     <% end %> 
+    <div class="col-md-12 d-flex text-center justify-content-center">
+      <%= paginate @results, theme: 'twitter-bootstrap-4' %>
+    </div>
   </div>
 </div>

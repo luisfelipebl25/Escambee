@@ -41,6 +41,8 @@ gem 'font-awesome-rails'
 gem 'inline_svg';
 gem 'giantbomb-api', '~> 1.6.0';
 gem 'figaro';
+gem 'kaminari';
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
