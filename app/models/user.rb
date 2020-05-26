@@ -1,10 +1,15 @@
-class User
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  
   attr_accessor :name
   attr_accessor :ownlist, :wishlist
   attr_accessor :proposal_answers, :match_answers
   attr_accessor :exchanges
 
-  def initialize
+  after_initialize do
     @proposal_answers = []
     @match_answers = []
     @ownlist = Ownlist.new self

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe User, type: :model do
   let(:games) { build_list :game, 2 }
   let(:proposal) { build :proposal, games: games }
   subject { build :user }

@@ -1,0 +1,122 @@
+<!--Carrosel-->
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <!--Imagens - Carrosel-->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+<div class="container how-it-works">
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h2>Como <br>funciona?</h2>
+    </div>
+    <div class="col-md-9">
+      <div class="row steps">
+        <div class="col-md-4">
+          <span><i class="far fa-hand-pointer fa-3x"></i></span>
+          <p>Escolha os jogos que você gostaria de <b>receber</b> e <b>dar em troca</b></p>
+        </div>
+        
+        <div class="col-md-4">
+          <span> <i class="fas fa-exchange-alt fa-3x"></i></span>
+          <p>Realize uma troca e espere que outro usuário a aceite</p>
+        </div>
+        <div class="col-md-4">
+          <span><i class="far fa-handshake fa-3x"></i></span>   
+          <p class="mb-1 font-weight-bold">Troca concluída!</p> 
+          <small class="text-muted">A partir do término da mesma, os usuários podem conversar sobre 
+          os detalhes.</small>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Trocas disponíveis</h2>
+      <hr>
+    </div>
+    <div class="col-md-3 col-6">
+       <div class="card">
+        <%= image_tag 'https://www.mercidisco.com.br/image/cache/data/guitar%20hero%20iii%20ost-800x800.jpg', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Guitar Hero III</h5>
+          <p class="card-text">Jogo para Playstation 3, nunca usado.</p>
+          <button type="button" class="btn btn-primary">Trocar Item</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <%= image_tag 'https://upload.wikimedia.org/wikipedia/pt/6/6b/Capa_de_Crash_Tag_Team_Racing.jpg', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Crash Tag Team Racing</h5>
+          <p class="card-text">Usado, porém funcionando normalmente. Para Play2 </p>
+          <button type="button" class="btn btn-primary">Trocar Item</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <%= image_tag 'https://upload.wikimedia.org/wikipedia/pt/d/dd/Crash_Bandicoot_1_capa.png', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Crash Bandicoot</h5>
+          <p class="card-text">Primeiro jogo da trilogia. Com alguns arranhões.</p>
+          <button type="button" class="btn btn-primary">Trocar Item</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+       <div class="card">
+        <%= image_tag 'https://3.bp.blogspot.com/-gfbs0el5bM8/Tg5MDRi_QMI/AAAAAAAABVg/0ivjUfroqUg/s1600/Tony+Hawk%2527s+Pro+Skater+2+Cover.jpg', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Tony Hawk's Pro Skater III</h5>
+          <p class="card-text">TOP DEMAIS IRMÃO</p>
+          <a href="/" class="btn btn-primary">Trocar Item</a>
+        </div>
+      </div> 
+    </div>
+    <div class="col-md-3 col-6">
+       <div class="card">
+        <%= image_tag 'https://3.bp.blogspot.com/-gfbs0el5bM8/Tg5MDRi_QMI/AAAAAAAABVg/0ivjUfroqUg/s1600/Tony+Hawk%2527s+Pro+Skater+2+Cover.jpg', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Tony Hawk's Pro Skater III</h5>
+          <p class="card-text">TOP DEMAIS IRMÃO</p>
+          <a href="/" class="btn btn-primary">Trocar Item</a>
+        </div>
+      </div> 
+    </div>
+    
+  </div>
+</div>
+
+
+  
+        <%#= image_tag 'https://via.placeholder.com/500x500', class: 'card-img-top' %>
+        
