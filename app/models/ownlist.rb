@@ -3,7 +3,7 @@ class Ownlist
   delegate :empty?, :delete, to: :list
 
   def initialize(user)
-    @list = []
+    @list = user.owns.map { |wish| Game.new wish.game_id }
     @user = user
   end
 

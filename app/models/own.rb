@@ -1,4 +1,4 @@
-class Wish < ApplicationRecord
+class Own < ApplicationRecord
   belongs_to :user
 
   def game

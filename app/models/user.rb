@@ -10,6 +10,7 @@ class User < ApplicationRecord
   attr_accessor :exchanges
 
   has_many :wishes
+  has_many :owns
 
   after_initialize do
     @proposal_answers = []
