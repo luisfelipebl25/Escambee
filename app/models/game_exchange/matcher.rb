@@ -27,8 +27,8 @@ module GameExchange
 
     def generate_matches(proposals)
       proposals.select { |proposal| has_matches? proposal}.map do |proposal|
-        proposal.answers.select(&:forward?).map do |answer|
-          proposal.answers.select(&:backward?).map do |answer_two|
+        proposal.positive_answers.select(&:forward?).map do |answer|
+          proposal.positive_answers.select(&:backward?).map do |answer_two|
             Match.new(proposal, answer.user, answer_two.user)
           end
         end

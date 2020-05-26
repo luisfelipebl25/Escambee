@@ -39,4 +39,19 @@ RSpec.describe Proposal do
       expect { proposal.answer(user_one, false) }.to_not change(proposal.answers, :count)
     end
   end
+
+  describe '#positive_answers' do
+    before(:each) do
+      proposal.answer(user_one, true)
+      proposal.answer(user_two, false)
+    end
+
+    it 'retorna respostas em que o usuário aceitou a proposta' do
+      expect(proposal.positive_answers.map(&:user)).to include(user_one)
+    end
+
+    it 'não retorna respostas em que o usuário negou a proposta' do
+      expect(proposal.positive_answers.map(&:user)).to_not include(user_two)
+    end
+  end
 end

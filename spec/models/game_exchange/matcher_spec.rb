@@ -54,6 +54,17 @@ RSpec.describe GameExchange::Matcher do
       end
     end
 
+    context 'um usuário aceita e outro rejeita' do
+      it 'não gera matches' do
+        proposals = subject.proposals
+
+        user.proposals(proposals).first.answer(user, true)
+        another_user.proposals(proposals).first.answer(another_user, false)
+
+        expect(subject.has_matches?(proposals.first)).to be true
+      end
+    end
+
     context 'dois usuários aceitam uma troca, ambos na mesma direção' do
       it 'não gera um match' do
         yet_another_user.ownlist.push games.first
@@ -92,6 +103,7 @@ RSpec.describe GameExchange::Matcher do
       another_user.ownlist.push games.second
       another_user.wishlist.push games.first
     end
+
     context 'dois usuários aceitam uma troca, sendo um aceitando em cada direção' do
       it 'gera um match' do
         proposals = subject.proposals
@@ -103,6 +115,17 @@ RSpec.describe GameExchange::Matcher do
       end
     end
 
+    context 'um usuário aceita e outro rejeita' do
+      it 'não gera matches' do
+        proposals = subject.proposals
+
+        user.proposals(proposals).first.answer(user, true)
+        another_user.proposals(proposals).first.answer(another_user, false)
+
+        expect(subject.generate_matches(proposals)).to be_empty
+      end
+    end
+
     context 'dois usuários aceitam uma troca, ambos na mesma direção' do
       it 'não gera um match' do
         yet_another_user.ownlist.push games.first
@@ -111,6 +134,7 @@ RSpec.describe GameExchange::Matcher do
         proposals = subject.proposals
 
         user.proposals(proposals).first.answer(user, true)
+        another_user.proposals(proposals).first.answer(another_user, false)
         yet_another_user.proposals(proposals).first.answer(yet_another_user, true)
 
         expect(subject.generate_matches(proposals)).to be_empty

@@ -18,6 +18,10 @@ class Proposal
     true
   end
 
+  def positive_answers
+    answers.select(&:accepted?)
+  end
+
   def ==(other)
     game_one == other.game_one && game_two == other.game_two
   end
