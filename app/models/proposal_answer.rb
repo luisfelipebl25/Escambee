@@ -24,6 +24,10 @@ class ProposalAnswer
     @direction == :forward
   end
 
+  def backward?
+    !forward?
+  end
+
   private
 
   def to_give

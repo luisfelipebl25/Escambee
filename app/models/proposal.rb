@@ -1,15 +1,19 @@
 class Proposal
   attr_accessor :game_one, :game_two
+  attr_accessor :answers
   def initialize(game_one = nil, game_two = nil)
     @game_one = game_one
     @game_two = game_two
+    @answers = []
   end
 
   def answer(user, answer)
     return false unless able_to_accept?(user)
+    return false if answers.any? { |ans| ans.user == user }
 
     proposal_answer = ProposalAnswer.new(self, user, answer)
     user.answers.push proposal_answer
+    answers.push proposal_answer
 
     true
   end

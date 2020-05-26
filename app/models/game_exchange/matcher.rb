@@ -1,5 +1,5 @@
 module GameExchange
-  class Match
+  class Matcher
     def initialize(games)
       @games = games
     end
@@ -23,6 +23,20 @@ module GameExchange
       auy = another_game.who_wishes & game.who_owns
 
       aux.any? && auy.any?
+    end
+
+    def generate_matches(proposals)
+      proposals.select { |proposal| has_matches? proposal}.map do |proposal|
+        proposal.answers.select(&:forward?).map do |answer|
+          proposal.answers.select(&:backward?).map do |answer_two|
+            Match.new(proposal, answer.user, answer_two.user)
+          end
+        end
+      end.flatten
+    end
+
+    def has_matches?(proposal)
+      proposal.answers.any?(&:forward?) && proposal.answers.any?(&:backward?)
     end
   end
 end

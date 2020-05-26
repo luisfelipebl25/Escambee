@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'dois usuários trocam de jogos' do
   describe 'cenário' do
-    it 'x' do
+    it 'Troca de jogos - caminho principal' do
       # Jogos adicionados
       games = build_list :game, 2
 
@@ -19,7 +19,7 @@ RSpec.describe 'dois usuários trocam de jogos' do
       user_two.wishlist.push games.first
 
       # Sistema reconhece possíveis Trocas e gera propostas
-      match = GameExchange::Match.new games
+      match = GameExchange::Matcher.new games
       proposals = match.proposals
 
       # Usuários respondem às propostas
@@ -27,12 +27,19 @@ RSpec.describe 'dois usuários trocam de jogos' do
       user_two.proposals(proposals).first.answer(user_two, true)
 
       # Geram Matches para trocas aceitas por usuários
+      matches = match.generate_matches proposals
 
       # Usuários confirmam os Matches
+      user_one.matches(matches).find { |m| m.users.include? user_two }.answer(user_one, true)
+      user_two.matches(matches).find { |m| m.users.include? user_one }.answer(user_two, true)
 
-      # A troca ocorre
-      exchange = GameExchange::Exchange.new(user_one, user_two, proposals.first)
-      exchange.exchange if exchange.matched?
+      # Sistema reconhece que há um match confirmado
+      confirmed_matches = match.confirmed_matches(matches)
+      confirmed_matches.each do |xmatch|
+        # Sistema realiza a troca
+        exchange = GameExchange::Exchange.new(xmatch.users.first, xmatch.users.second, xmatch.proposal)
+        exchange.exchange if exchange.matched?
+      end
 
       # Fim
       expect(user_one.exchanges.count).to eq(1)
