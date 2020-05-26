@@ -7,8 +7,8 @@ RSpec.describe 'dois usuários trocam de jogos' do
       games = build_list :game, 2
 
       # Criação de usuários
-      user_one = build :user
-      user_two = build :user
+      user_one = create :user
+      user_two = create :user
 
       # Usuário 1 adiciona jogos que possui e quer
       user_one.ownlist.push games.first

@@ -6,6 +6,9 @@ FactoryBot.define do
     end
 
     name { Faker::Name.name_with_middle }
+    email { Faker::Internet.email(name: name) }
+    password { Faker::Internet.password }
+    password_confirmation { password }
 
     after(:build) do |user, options|
       options.wishes.each { |wish| user.wishlist.push wish }

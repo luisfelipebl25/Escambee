@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe GameExchange::Matcher do
   let(:games) { build_list :game, 2 }
-  let(:user) { build :user }
-  let(:another_user) { build :user }
-  let(:yet_another_user) { build :user }
+  let(:user) { create :user }
+  let(:another_user) { create :user }
+  let(:yet_another_user) { create :user }
   subject { described_class.new games }
 
   describe '#proposals' do
