@@ -28,6 +28,33 @@ a:hover {
   }
 }
 
+.card-col {
+  margin-bottom: 10px;
+  margin-top: 8px;
+}
+
+.games-row {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.game-pic {
+  width: 120px;
+  height: 190px;
+  max-height: 190px;
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  opacity: 0; 
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all .3s ease-in-out;
+}
+
+.card-img-overlay.activate {
+  opacity: 1 !important;
+}
+
 .card-img-top {
   height: 250px;
   max-height: 250px;
