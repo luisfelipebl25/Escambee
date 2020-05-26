@@ -17,7 +17,11 @@ class ProposalAnswer
   def transaction
     return unless accepted?
 
-    Transaction.new(@user, to_give, to_receive)
+    Transaction.new(
+      user: @user,
+      given_game_id: to_give.id,
+      received_game_id: to_receive.id
+    )
   end
 
   def forward?

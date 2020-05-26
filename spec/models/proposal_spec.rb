@@ -8,7 +8,7 @@ RSpec.describe Proposal do
 
   describe '#answer' do
     context 'Usuário não possui jogo' do
-      let(:invalid_user) { create :user, ownlist: [], wishlist: [proposal.game_two] }
+      let(:invalid_user) { create :user, owns: [], wishes: [proposal.game_two] }
 
       it 'não permite a operação' do
         expect(proposal.answer(invalid_user, true)).to be false
@@ -16,7 +16,7 @@ RSpec.describe Proposal do
     end
 
     context 'Usuário não deseja jogo' do
-      let(:invalid_user) { create :user, ownlist: [proposal.game_one], wishlist: [] }
+      let(:invalid_user) { create :user, owns: [proposal.game_one], wishes: [] }
 
       it 'não permite a operação' do
         expect(proposal.answer(invalid_user, true)).to be false

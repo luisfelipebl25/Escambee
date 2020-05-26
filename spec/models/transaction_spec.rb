@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Transaction do
   let(:games) { build_list :game, 2 }
-  subject { build(:transaction, games: games) }
+  subject { create(:transaction, games: games) }
 
   describe '#execute' do
     describe 'é idempotente' do

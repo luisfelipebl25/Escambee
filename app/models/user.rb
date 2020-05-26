@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attr_accessor :name
-  attr_accessor :ownlist, :wishlist
+  attr_reader :ownlist, :wishlist
   attr_accessor :proposal_answers, :match_answers
-  attr_accessor :exchanges
 
   has_many :wishes
   has_many :owns
+  has_many :exchanges, class_name: 'Transaction'
 
   after_initialize do
     @proposal_answers = []
@@ -57,7 +57,7 @@ class User < ApplicationRecord
   private
 
   def proposal_answer(proposal)
-    return false unless proposal.is_a? Proposal
+    return nil unless proposal.is_a? Proposal
 
     proposal_answers.find { |answer| answer.proposal == proposal }
   end
