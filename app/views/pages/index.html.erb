@@ -1,31 +1,25 @@
 <!--Carrosel-->
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
     <!--Imagens - Carrosel-->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
+        <%= image_tag 'https://wallpaperplay.com/walls/full/c/1/4/101203.jpg', class: 'd-block w-100 hero-img',
+        style: "height: 100vh; object-fit: cover;"%>
+        <div class="black-overlay">
+        
+        </div>
       </div>
-      <div class="carousel-item">
-        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag 'https://via.placeholder.com/1280x600', class: 'd-block w-100'%>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+      <div class="hero">
+        <h5 class="my-3 text-primary">Bem-vindo(a) ao Escambee</h5>
+        <h1 class="my-3">Troque seus jogos de maneira fácil!</h1>
+        <p class="my-4">Com o Escambee, é possível fazer uma lista com os jogos que você deseja receber e selecionar
+        os que você tem e quer dar e troca. Você pode ver se seus jogos desejados estão disponíveis, 
+        e, então, realizar uma troca.</p>
+
+        <%= link_to 'Criar conta', new_user_registration_path, class: "btn btn-primary" %>     
+      </div>  
+    </div>  
   </div>
 
 
@@ -59,60 +53,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2>Trocas disponíveis</h2>
+      <h2>Jogos disponíveis</h2>
       <hr>
     </div>
     <div class="col-md-3 col-6">
        <div class="card">
-        <%= image_tag 'https://www.mercidisco.com.br/image/cache/data/guitar%20hero%20iii%20ost-800x800.jpg', class: 'card-img-top' %>
+        <%= image_tag 'http://via.placeholder.com/300x300', class: 'card-img-top' %>
         <div class="card-body">
-          <h5 class="card-title">Guitar Hero III</h5>
-          <p class="card-text">Jogo para Playstation 3, nunca usado.</p>
-          <button type="button" class="btn btn-primary">Trocar Item</button>
+          <h5 class="card-title">Nome do jogo</h5>
+          <% if user_signed_in? %>
+            <%= link_to 'Trocar item', class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-muted">
+              <%= link_to 'Entre', new_user_session_path%> ou 
+              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+            </p>
+            
+          <% end %>
         </div>
       </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="card">
-        <%= image_tag 'https://upload.wikimedia.org/wikipedia/pt/6/6b/Capa_de_Crash_Tag_Team_Racing.jpg', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Crash Tag Team Racing</h5>
-          <p class="card-text">Usado, porém funcionando normalmente. Para Play2 </p>
-          <button type="button" class="btn btn-primary">Trocar Item</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="card">
-        <%= image_tag 'https://upload.wikimedia.org/wikipedia/pt/d/dd/Crash_Bandicoot_1_capa.png', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Crash Bandicoot</h5>
-          <p class="card-text">Primeiro jogo da trilogia. Com alguns arranhões.</p>
-          <button type="button" class="btn btn-primary">Trocar Item</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-       <div class="card">
-        <%= image_tag 'https://3.bp.blogspot.com/-gfbs0el5bM8/Tg5MDRi_QMI/AAAAAAAABVg/0ivjUfroqUg/s1600/Tony+Hawk%2527s+Pro+Skater+2+Cover.jpg', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Tony Hawk's Pro Skater III</h5>
-          <p class="card-text">TOP DEMAIS IRMÃO</p>
-          <a href="/" class="btn btn-primary">Trocar Item</a>
-        </div>
-      </div> 
-    </div>
-    <div class="col-md-3 col-6">
-       <div class="card">
-        <%= image_tag 'https://3.bp.blogspot.com/-gfbs0el5bM8/Tg5MDRi_QMI/AAAAAAAABVg/0ivjUfroqUg/s1600/Tony+Hawk%2527s+Pro+Skater+2+Cover.jpg', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Tony Hawk's Pro Skater III</h5>
-          <p class="card-text">TOP DEMAIS IRMÃO</p>
-          <a href="/" class="btn btn-primary">Trocar Item</a>
-        </div>
-      </div> 
-    </div>
-    
+    </div>  
   </div>
 </div>
 

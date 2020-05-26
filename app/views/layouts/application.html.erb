@@ -41,7 +41,7 @@
               class: "form-control", aria: { label: "Procurar jogo...", describedby: "button-addon2"} %>
               <div class="input-group-append">
                 
-                <%= button_tag '', search: nil, class:"btn btn-primary px-3", id: "button-addon2" do %>
+                <%= button_tag(:submit, class: "btn btn-primary px-3", id: "button-addon2") do %>
                   <i class="fa fa-search text-light"></i>
                 <% end %>
               </div>
