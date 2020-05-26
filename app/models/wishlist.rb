@@ -3,7 +3,7 @@ class Wishlist
   delegate :empty?, :delete, to: :list
 
   def initialize(user)
-    @list = []
+    @list = user.wishes.map { |wish| Game.new wish.game_id }
     @user = user
   end
 

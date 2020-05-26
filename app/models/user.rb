@@ -9,6 +9,8 @@ class User < ApplicationRecord
   attr_accessor :proposal_answers, :match_answers
   attr_accessor :exchanges
 
+  has_many :wishes
+
   after_initialize do
     @proposal_answers = []
     @match_answers = []
