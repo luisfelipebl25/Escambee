@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/8d9d868ad3.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('bee.ico') %>
   </head>
   
   <div class="header">
@@ -54,13 +55,13 @@
           <i class="far fa-heart fa-2x"></i>
             <div class="d-flex flex-column">
               <div class="teste"><%= link_to 'Desejados', profile_path %> </div>
-              <div class="text-muted">10</div>
+              <div class="text-muted">1</div>
             </div>
           <i class="far fa-user fa-2x ml-4"></i>
           
             <div class="d-flex flex-column">
               <div><%= link_to 'Perfil', profile_path %> </div>
-              <div class="text-muted">2 jogos</div>
+              <div class="text-muted">1 jogo</div>
             </div>
           </div> 
           <% else %>

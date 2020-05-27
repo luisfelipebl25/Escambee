@@ -1,4 +1,4 @@
-<%= unless user_signed_in? %>
+<% unless !user_signed_in? %>
 
   <div class="container">
     <div class="row games-row">
@@ -40,16 +40,16 @@
     <div class="row">
       <div class="col-md-12">
         <nav class="navbar navbar-dark bg-primary">
-          <h2><a class="navbar-brand">Trocas em andamento</a></h2>
+          <h2><a class="navbar-brand">Proposta de trocas</a></h2>
         </nav>
       </div>
     
       <div class="col-md-3 card-col">
         <div class="card">
-          <%= image_tag "https://via.placeholder.com/500x500", class: "card-img-top" %>
+          <%= image_tag "https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881070-box_crashttr.png", class: "card-img-top" %>
           <div class="card-body">
-            <h5 class="card-title">Jogo: </h5>
-            <small class="text-muted">Descrição:</small> 
+            <h5 class="card-title mb-0">Crash Tag Team Racing</h5>
+            <%# <small class="text-muted">Descrição:</small>  %>
           </div>
           <div class="card-footer text-center">
             <button type="button" class="btn btn-success">Trocar</button>

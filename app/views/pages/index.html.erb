@@ -17,7 +17,7 @@
         os que você tem e quer dar e troca. Você pode ver se seus jogos desejados estão disponíveis, 
         e, então, realizar uma troca.</p>
 
-        <%= link_to 'Criar conta', new_user_registration_path, class: "btn btn-primary" %>     
+        <%= link_to 'Criar conta', new_user_registration_path, class: "btn btn-primary p-3" %>     
       </div>  
     </div>  
   </div>
@@ -56,23 +56,76 @@
       <h2>Jogos disponíveis</h2>
       <hr>
     </div>
+
     <div class="col-md-3 col-6">
        <div class="card">
-        <%= image_tag 'http://via.placeholder.com/300x300', class: 'card-img-top' %>
+        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881070-box_crashttr.png', class: 'card-img-top' %>
         <div class="card-body">
-          <h5 class="card-title">Nome do jogo</h5>
+          <h5 class="card-title">Crash Tag Team Racing</h5>
           <% if user_signed_in? %>
-            <%= link_to 'Trocar item', class: "btn btn-primary" %>
+            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
           <% else %>
             <p class="text-muted">
               <%= link_to 'Entre', new_user_session_path%> ou 
               <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
-            </p>
-            
+            </p>   
           <% end %>
         </div>
       </div>
-    </div>  
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881043-box_cbtwoc.png', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Crash Bandicoot: The Wrath of Cortex</h5>
+          <% if user_signed_in? %>
+            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-muted">
+              <%= link_to 'Entre', new_user_session_path%> ou 
+              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+            </p>   
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/3016176-box_cbnst.png', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Crash Bandicoot N. Sane Trilogy</h5>
+          <% if user_signed_in? %>
+            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-muted">
+              <%= link_to 'Entre', new_user_session_path%> ou 
+              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+            </p>   
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/2269420-box_thps2.png', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Tony Hawk's Pro Skater 2</h5>
+          <% if user_signed_in? %>
+            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-muted">
+              <%= link_to 'Entre', new_user_session_path%> ou 
+              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+            </p>   
+          <% end %>
+          </div>
+        </div>
+      </div>  
+    </div>
+    
   </div>
 </div>
 
