@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200528023519) do
+ActiveRecord::Schema.define(version: 20200528032830) do
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "proposal_id"
+    t.integer "forward_user_id"
+    t.integer "backward_user_id"
+    t.index ["proposal_id"], name: "index_matches_on_proposal_id"
+  end
 
   create_table "owns", force: :cascade do |t|
     t.string "game_id"

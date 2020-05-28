@@ -1,20 +1,20 @@
-class Match
-  attr_accessor :proposal, :user_forward, :user_backward
+class Match < ApplicationRecord
   attr_accessor :answers
 
-  def initialize(proposal, user_forward, user_backward)
-    @proposal = proposal
-    @user_forward = user_forward
-    @user_backward = user_backward
+  belongs_to :forward_user, class_name: User
+  belongs_to :backward_user, class_name: User
+  belongs_to :proposal
+
+  after_initialize do
     @answers = []
   end
 
   def users
-    [user_forward, user_backward]
+    [forward_user, backward_user]
   end
 
   def confirmed?
-    user_forward.answer(proposal).accepted? && user_backward.answer(proposal).accepted?
+    forward_user.answer(proposal).accepted? && backward_user.answer(proposal).accepted?
   end
 
   def answer(user, answer)

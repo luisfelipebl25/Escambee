@@ -29,7 +29,7 @@ module GameExchange
       proposals.select { |proposal| has_matches? proposal}.map do |proposal|
         proposal.positive_answers.select(&:forward?).map do |answer|
           proposal.positive_answers.select(&:backward?).map do |answer_two|
-            Match.new(proposal, answer.user, answer_two.user)
+            Match.new(proposal: proposal, forward_user: answer.user, backward_user: answer_two.user)
           end
         end
       end.flatten
