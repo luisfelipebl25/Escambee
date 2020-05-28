@@ -1,31 +1,32 @@
-class ProposalAnswer
-  attr_accessor :proposal
-  attr_accessor :user
-  attr_accessor :direction
+class ProposalAnswer < ApplicationRecord
+  belongs_to :proposal
+  belongs_to :user
+  enum direction: [:forward, :backward]
 
-  def initialize(proposal, user, answer)
-    @proposal = proposal
-    @user = user
-    @answer = answer
-    @direction = define_direction(user, proposal)
+  before_save do
+    direction = define_direction(user, proposal)
+  end
+
+  def direction
+    define_direction(user, proposal)
   end
 
   def accepted?
-    @answer
+    answer
   end
 
   def transaction
     return unless accepted?
 
     Transaction.new(
-      user: @user,
+      user: user,
       given_game_id: to_give.id,
       received_game_id: to_receive.id
     )
   end
 
   def forward?
-    @direction == :forward
+    direction == :forward
   end
 
   def backward?

@@ -1,9 +1,11 @@
 class Proposal < ApplicationRecord
-  attr_accessor :answers
+  # attr_accessor :answers
 
-  after_initialize do
-    @answers = []
-  end
+  has_many :answers, class_name: ProposalAnswer
+
+  # after_initialize do
+  #   @answers = []
+  # end
 
   def first_game
     Game.new first_game_id
@@ -17,7 +19,7 @@ class Proposal < ApplicationRecord
     return false unless able_to_accept?(user)
     return false if answers.any? { |ans| ans.user == user }
 
-    proposal_answer = ProposalAnswer.new(self, user, answer)
+    proposal_answer = ProposalAnswer.new(proposal: self, user: user, answer: answer)
     user.proposal_answers.push proposal_answer
     answers.push proposal_answer
 

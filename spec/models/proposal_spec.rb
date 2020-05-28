@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Proposal do
   let(:games) { build_list :game, 2 }
-  let(:proposal) { build :proposal, games: games }
+  let(:proposal) { create :proposal, games: games }
   let(:user_one) { create :user, owns: [proposal.first_game], wishes: [proposal.second_game] }
   let(:user_two) { create :user, owns: [proposal.second_game], wishes: [proposal.first_game] }
 
