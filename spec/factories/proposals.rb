@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :proposal do
-    game_one { build :game }
-    game_two { build :game }
+    transient do
+      games { [] }
+    end
+
+    first_game_id { games.first.id }
+    second_game_id { games.second.id }
   end
 end
