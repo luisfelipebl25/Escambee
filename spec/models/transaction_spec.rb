@@ -9,15 +9,15 @@ RSpec.describe Transaction do
       context 'numa segunda execução da transação' do
         before(:each) { subject.execute }
         it 'não altera a lista de desejos' do
-          expect { subject.execute }.to_not change(subject.user, :wishlist)
+          expect { subject.execute }.to_not change(subject.user.wishlist, :count)
         end
 
         it 'não altera os jogos que ele tem' do
-          expect { subject.execute }.to_not change(subject.user, :ownlist)
+          expect { subject.execute }.to_not change(subject.user.ownlist, :count)
         end
 
         it 'não se adiciona à lista de transações novamente' do
-          expect { subject.execute }.to_not change(subject.user, :exchanges)
+          expect { subject.execute }.to_not change(subject.user.exchanges, :count)
         end
       end
     end

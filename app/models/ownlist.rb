@@ -19,10 +19,7 @@ class Ownlist
   def delete(game)
     @list.delete game
 
-    own = @user.owns.where(game_id: game.id).first
-    own.destroy!
-
-    game.who_owns.delete @user
+    @user.owns.where(game_id: game.id).first.destroy!
   end
 
   private

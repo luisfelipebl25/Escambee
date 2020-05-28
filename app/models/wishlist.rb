@@ -19,10 +19,7 @@ class Wishlist
   def delete(game)
     @list.delete game
 
-    wish = @user.wishes.where(game_id: game.id).first
-    wish.destroy!
-
-    game.who_wishes.delete @user
+    @user.wishes.where(game_id: game.id).first.destroy!
   end
 
   private

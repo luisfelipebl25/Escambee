@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attr_accessor :name
-  attr_reader :ownlist, :wishlist
+  attr_reader :ownlist
+  attr_reader :wishlist
   attr_accessor :proposal_answers, :match_answers
 
   has_many :wishes
