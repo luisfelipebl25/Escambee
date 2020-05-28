@@ -14,14 +14,14 @@ class Match
   end
 
   def confirmed?
-    user_forward.answer(self).accepted? && user_backward.answer(self).accepted?
+    user_forward.answer(proposal).accepted? && user_backward.answer(proposal).accepted?
   end
 
   def answer(user, answer)
     return false if answers.any? { |ans| ans.user == user }
     return false unless able_to_accept?(user)
 
-    match_answer = MatchAnswer.new(self, user, answer)
+    match_answer = MatchAnswer.new(proposal, user, answer)
     user.match_answers.push match_answer
   end
 

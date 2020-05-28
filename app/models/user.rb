@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attr_accessor :name
-  attr_accessor :proposal_answers, :match_answers
+  attr_accessor :match_answers
+
+  has_many :proposal_answers
 
   has_many :wishes
   has_many :owns

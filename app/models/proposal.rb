@@ -19,9 +19,9 @@ class Proposal < ApplicationRecord
     return false unless able_to_accept?(user)
     return false if answers.any? { |ans| ans.user == user }
 
-    proposal_answer = ProposalAnswer.new(proposal: self, user: user, answer: answer)
-    user.proposal_answers.push proposal_answer
-    answers.push proposal_answer
+    ProposalAnswer.create(proposal: self, user: user, answer: answer)
+    user.reload
+    self.reload
 
     true
   end
