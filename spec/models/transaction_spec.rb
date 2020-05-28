@@ -17,7 +17,7 @@ RSpec.describe Transaction do
         end
 
         it 'não se adiciona à lista de transações novamente' do
-          expect { subject.execute }.to_not change(subject.user, :wishlist)
+          expect { subject.execute }.to_not change(subject.user, :exchanges)
         end
       end
     end
