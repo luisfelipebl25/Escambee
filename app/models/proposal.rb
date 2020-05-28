@@ -5,11 +5,11 @@ class Proposal < ApplicationRecord
     @answers = []
   end
 
-  def game_one
+  def first_game
     Game.new first_game_id
   end
 
-  def game_two
+  def second_game
     Game.new second_game_id
   end
 
@@ -29,12 +29,12 @@ class Proposal < ApplicationRecord
   end
 
   def ==(other)
-    game_one == other.game_one && game_two == other.game_two
+    first_game == other.first_game && second_game == other.second_game
   end
 
   def able_to_accept?(user)
-    return true if user.wishes?(game_one) && user.owns?(game_two)
-    return true if user.wishes?(game_two) && user.owns?(game_one)
+    return true if user.wishes?(first_game) && user.owns?(second_game)
+    return true if user.wishes?(second_game) && user.owns?(first_game)
 
     false
   end

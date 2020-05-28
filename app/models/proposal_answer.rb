@@ -35,17 +35,17 @@ class ProposalAnswer
   private
 
   def to_give
-    forward? ? proposal.game_one : proposal.game_two
+    forward? ? proposal.first_game : proposal.second_game
   end
 
   def to_receive
-    forward? ? proposal.game_two : proposal.game_one
+    forward? ? proposal.second_game : proposal.first_game
   end
 
   def define_direction(user, proposal)
-    if user.owns?(proposal.game_one) && user.wishes?(proposal.game_two)
+    if user.owns?(proposal.first_game) && user.wishes?(proposal.second_game)
       :forward
-    elsif user.owns?(proposal.game_two) && user.wishes?(proposal.game_one)
+    elsif user.owns?(proposal.second_game) && user.wishes?(proposal.first_game)
       :backward
     end
   end

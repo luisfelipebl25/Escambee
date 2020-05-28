@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Proposal do
   let(:games) { build_list :game, 2 }
   let(:proposal) { build :proposal, games: games }
-  let(:user_one) { create :user, owns: [proposal.game_one], wishes: [proposal.game_two] }
-  let(:user_two) { create :user, owns: [proposal.game_two], wishes: [proposal.game_one] }
+  let(:user_one) { create :user, owns: [proposal.first_game], wishes: [proposal.second_game] }
+  let(:user_two) { create :user, owns: [proposal.second_game], wishes: [proposal.first_game] }
 
   describe '#answer' do
     context 'Usuário não possui jogo' do
-      let(:invalid_user) { create :user, owns: [], wishes: [proposal.game_two] }
+      let(:invalid_user) { create :user, owns: [], wishes: [proposal.second_game] }
 
       it 'não permite a operação' do
         expect(proposal.answer(invalid_user, true)).to be false
@@ -16,7 +16,7 @@ RSpec.describe Proposal do
     end
 
     context 'Usuário não deseja jogo' do
-      let(:invalid_user) { create :user, owns: [proposal.game_one], wishes: [] }
+      let(:invalid_user) { create :user, owns: [proposal.first_game], wishes: [] }
 
       it 'não permite a operação' do
         expect(proposal.answer(invalid_user, true)).to be false

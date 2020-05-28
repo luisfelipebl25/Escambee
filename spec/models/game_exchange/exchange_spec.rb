@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe GameExchange::Exchange do
   let(:games) { build_list :game, 2 }
   let(:proposal) { build :proposal, games: games }
-  let(:user_one) { create :user, owns: [proposal.game_one], wishes: [proposal.game_two] }
-  let(:user_two) { create :user, owns: [proposal.game_two], wishes: [proposal.game_one] }
+  let(:user_one) { create :user, owns: [proposal.first_game], wishes: [proposal.second_game] }
+  let(:user_two) { create :user, owns: [proposal.second_game], wishes: [proposal.first_game] }
 
   subject { described_class.new(user_one, user_two, proposal) }
 
@@ -75,15 +75,15 @@ RSpec.describe GameExchange::Exchange do
 
       describe 'Usuário 1' do
         it 'não deseja mais jogo B' do
-          expect(user_one.wishlist).to_not include(proposal.game_two)
+          expect(user_one.wishlist).to_not include(proposal.second_game)
         end
 
         it 'não possui mais jogo A' do
-          expect(user_one.ownlist).to_not include(proposal.game_one)
+          expect(user_one.ownlist).to_not include(proposal.first_game)
         end
 
         it 'possui jogo B' do
-          expect(user_one.ownlist).to include(proposal.game_two)
+          expect(user_one.ownlist).to include(proposal.second_game)
         end
 
         describe 'gerou uma transação Usuário 1: Jogo A <-> Jogo B' do
@@ -92,26 +92,26 @@ RSpec.describe GameExchange::Exchange do
           end
 
           it 'que doou jogo A' do
-            expect(user_one.exchanges.first.given).to eq(proposal.game_one)
+            expect(user_one.exchanges.first.given).to eq(proposal.first_game)
           end
 
           it 'em troca de jogo B' do
-            expect(user_one.exchanges.first.received).to eq(proposal.game_two)
+            expect(user_one.exchanges.first.received).to eq(proposal.second_game)
           end
         end
       end
 
       describe 'Usuário 2' do
         it 'não deseja mais jogo A' do
-          expect(user_two.wishlist).to_not include(proposal.game_one)
+          expect(user_two.wishlist).to_not include(proposal.first_game)
         end
 
         it 'não possui mais jogo B' do
-          expect(user_two.ownlist).to_not include(proposal.game_two)
+          expect(user_two.ownlist).to_not include(proposal.second_game)
         end
 
         it 'possui jogo A' do
-          expect(user_two.ownlist).to include(proposal.game_one)
+          expect(user_two.ownlist).to include(proposal.first_game)
         end
 
         describe 'gerou uma transação Usuário 2: Jogo B <-> Jogo A' do
@@ -120,11 +120,11 @@ RSpec.describe GameExchange::Exchange do
           end
 
           it 'que doou jogo B' do
-            expect(user_two.exchanges.first.given).to eq(proposal.game_two)
+            expect(user_two.exchanges.first.given).to eq(proposal.second_game)
           end
 
           it 'em troca de jogo A' do
-            expect(user_two.exchanges.first.received).to eq(proposal.game_one)
+            expect(user_two.exchanges.first.received).to eq(proposal.first_game)
           end
         end
       end
