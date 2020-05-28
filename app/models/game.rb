@@ -1,12 +1,13 @@
 class Game
+  include Comparable
   attr_accessor :id
 
   def initialize(id = nil)
     @id = id
   end
 
-  def ==(other)
-    id == other.id
+  def <=>(other)
+    id <=> other.id
   end
 
   def who_owns

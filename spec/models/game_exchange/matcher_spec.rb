@@ -9,14 +9,22 @@ RSpec.describe GameExchange::Matcher do
 
   describe '#proposals' do
     context 'quando há dois jogos possiveis de serem trocados por dois usuários' do
-      it 'gera uma proposta' do
+      before(:each) do
         user.ownlist.push games.first
         user.wishlist.push games.second
 
         another_user.ownlist.push games.second
         another_user.wishlist.push games.first
+      end
+
+      it 'gera uma proposta' do
+        
 
         expect(subject.proposals.map(&:attributes)).to include(Proposal.new(first_game_id: games.first.id, second_game_id: games.second.id).attributes)
+      end
+
+      it 'gera uma proposta única' do
+        expect(subject.proposals.count).to eq(1)
       end
     end
   end

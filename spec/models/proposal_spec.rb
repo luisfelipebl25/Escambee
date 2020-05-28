@@ -5,7 +5,7 @@ RSpec.describe Proposal do
   let(:proposal) { create :proposal, games: games }
   let(:user_one) { create :user, owns: [proposal.first_game], wishes: [proposal.second_game] }
   let(:user_two) { create :user, owns: [proposal.second_game], wishes: [proposal.first_game] }
-
+  
   describe '#answer' do
     context 'Usuário não possui jogo' do
       let(:invalid_user) { create :user, owns: [], wishes: [proposal.second_game] }
@@ -52,6 +52,18 @@ RSpec.describe Proposal do
 
     it 'não retorna respostas em que o usuário negou a proposta' do
       expect(proposal.positive_answers.map(&:user)).to_not include(user_two)
+    end
+  end
+
+  describe '#==' do
+    let(:another_proposal) { build :proposal, games: games.reverse }
+
+    it 'propostas com os mesmos jogos na mesma ordem são consideradas iguais' do
+      expect(proposal).to eq(proposal.clone)
+    end
+
+    it 'proposras com os mesmo jogos em ordem diferente são consideradas iguais' do
+      expect(proposal).to eq(another_proposal)
     end
   end
 end

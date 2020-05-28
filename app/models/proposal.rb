@@ -11,7 +11,7 @@ class Proposal < ApplicationRecord
 
   def answer(user, answer)
     return false unless able_to_accept?(user)
-    return false if answers.any? { |ans| ans.user == user }
+    return false if answers.where(user: user).any?
 
     ProposalAnswer.create(proposal: self, user: user, answer: answer)
     user.reload
@@ -25,7 +25,7 @@ class Proposal < ApplicationRecord
   end
 
   def ==(other)
-    first_game == other.first_game && second_game == other.second_game
+    games.sort == other.games.sort
   end
 
   def able_to_accept?(user)
@@ -33,5 +33,9 @@ class Proposal < ApplicationRecord
     return true if user.wishes?(second_game) && user.owns?(first_game)
 
     false
+  end
+
+  def games
+    [first_game, second_game]
   end
 end
