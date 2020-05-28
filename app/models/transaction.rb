@@ -1,6 +1,11 @@
 class Transaction < ApplicationRecord
   belongs_to :user
 
+  validates_presence_of :given_game_id, :received_game_id
+
+  validates :given_game_id, format: { with: /\A\d+\Z/ }
+  validates :received_game_id, format: { with: /\A\d+\Z/ }
+
   def given
     Game.new given_game_id
   end

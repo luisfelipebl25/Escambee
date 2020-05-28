@@ -4,6 +4,10 @@ RSpec.describe Transaction do
   let(:games) { build_list :game, 2 }
   subject { build(:transaction, games: games) }
 
+  describe 'validações' do
+    it { expect(build :transaction).to be_valid }
+  end
+
   describe '#execute' do
     describe 'é idempotente' do
       context 'numa segunda execução da transação' do

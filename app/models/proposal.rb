@@ -1,6 +1,11 @@
 class Proposal < ApplicationRecord
   has_many :answers, class_name: 'ProposalAnswer'
 
+  validates_presence_of :first_game_id, :second_game_id
+
+  validates :first_game_id, format: { with: /\A\d+\Z/ }
+  validates :second_game_id, format: { with: /\A\d+\Z/ }
+
   def first_game
     Game.new first_game_id
   end
