@@ -6,7 +6,6 @@ class User < ApplicationRecord
   
   attr_accessor :name
   attr_reader :ownlist
-  attr_reader :wishlist
   attr_accessor :proposal_answers, :match_answers
 
   has_many :wishes
@@ -17,8 +16,11 @@ class User < ApplicationRecord
     @proposal_answers = []
     @match_answers = []
     @ownlist = Ownlist.new self
-    @wishlist = Wishlist.new self
     @exchanges = []
+  end
+
+  def wishlist
+    Wishlist.new self
   end
 
   def wishes?(game)
