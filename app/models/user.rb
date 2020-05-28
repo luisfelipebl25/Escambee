@@ -55,10 +55,6 @@ class User < ApplicationRecord
     answer(proposal)&.accepted?
   end
 
-  def ==(other)
-    name == other.name
-  end
-
   private
 
   def proposal_answer(proposal)
