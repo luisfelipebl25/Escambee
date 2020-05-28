@@ -57,75 +57,28 @@
       <hr>
     </div>
 
-    <div class="col-md-3 col-6">
-       <div class="card">
-        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881070-box_crashttr.png', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Crash Tag Team Racing</h5>
-          <% if user_signed_in? %>
-            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
-          <% else %>
-            <p class="text-muted">
-              <%= link_to 'Entre', new_user_session_path%> ou 
-              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
-            </p>   
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-6">
-      <div class="card">
-        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881043-box_cbtwoc.png', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Crash Bandicoot: The Wrath of Cortex</h5>
-          <% if user_signed_in? %>
-            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
-          <% else %>
-            <p class="text-muted">
-              <%= link_to 'Entre', new_user_session_path%> ou 
-              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
-            </p>   
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-6">
-      <div class="card">
-        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/3016176-box_cbnst.png', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Crash Bandicoot N. Sane Trilogy</h5>
-          <% if user_signed_in? %>
-            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
-          <% else %>
-            <p class="text-muted">
-              <%= link_to 'Entre', new_user_session_path%> ou 
-              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
-            </p>   
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-6">
-      <div class="card">
-        <%= image_tag 'https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/2269420-box_thps2.png', class: 'card-img-top' %>
-        <div class="card-body">
-          <h5 class="card-title">Tony Hawk's Pro Skater 2</h5>
-          <% if user_signed_in? %>
-            <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
-          <% else %>
-            <p class="text-muted">
-              <%= link_to 'Entre', new_user_session_path%> ou 
-              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
-            </p>   
-          <% end %>
+    <% @results.each do |game| %>
+      <div class="col-md-3 col-6">
+        <div class="card">
+          <%= image_tag "#{game.image['original_url']}", class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= game.name%></h5>
+            <% if user_signed_in? %>
+              <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
+            <% else %>
+              <p class="text-muted">
+                <%= link_to 'Entre', new_user_session_path%> ou 
+                <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+              </p>   
+            <% end %>
           </div>
         </div>
-      </div>  
+      </div>
+    <% end %>
+
+    <div class="col-md-12 d-flex text-center justify-content-center">
+      <%= paginate @results, theme: 'twitter-bootstrap-4' %>
     </div>
-    
   </div>
 </div>
 
