@@ -1,13 +1,9 @@
 class Match < ApplicationRecord
-  attr_accessor :answers
+  has_many :answers, class_name: MatchAnswer
 
   belongs_to :forward_user, class_name: User
   belongs_to :backward_user, class_name: User
   belongs_to :proposal
-
-  after_initialize do
-    @answers = []
-  end
 
   def users
     [forward_user, backward_user]
