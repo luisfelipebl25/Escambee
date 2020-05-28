@@ -28,6 +28,65 @@ a:hover {
   }
 }
 
+.card-col {
+  margin-bottom: 10px;
+  margin-top: 8px;
+}
+
+.carousel-item {
+  position: relative !important;
+}
+
+.black-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  -webkit-transform: translate3d(-50%,-50%,0);
+  -moz-transform: translate3d(-50%,-50%,0);
+  -ms-transform: translate3d(-50%,-50%,0);
+  -o-transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%,-50%,0);
+}
+
+.hero h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.games-row {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.game-pic {
+  width: 120px;
+  height: 190px;
+  max-height: 190px;
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  opacity: 0; 
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all .3s ease-in-out;
+}
+
+.card-img-overlay.activate {
+  opacity: 1 !important;
+}
+
 .card-img-top {
   height: 250px;
   max-height: 250px;
@@ -129,6 +188,15 @@ a.text-primary:hover, a.text-primary:focus, a.text-primary:link {
     padding-right: 0.2rem !important;
     padding-left: 0.2rem !important;
   } 
+}
+
+@media(max-width: 500px) {
+  .hero-img {
+    height: 150vh !important;
+  }
+  .hero {
+    padding: 2rem 0;
+  }
 }
 
 .navbar-nav {
