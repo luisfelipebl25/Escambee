@@ -4,7 +4,7 @@ FactoryBot.define do
       games { [] }
     end
 
-    game_one { games.first }
-    game_two { games.second }
+    first_game_id { games.first.id }
+    second_game_id { games.second.id }
   end
 end

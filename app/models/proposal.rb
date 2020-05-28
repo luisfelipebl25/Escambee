@@ -1,10 +1,16 @@
-class Proposal
-  attr_accessor :game_one, :game_two
+class Proposal < ApplicationRecord
   attr_accessor :answers
-  def initialize(game_one = nil, game_two = nil)
-    @game_one = game_one
-    @game_two = game_two
+
+  after_initialize do
     @answers = []
+  end
+
+  def game_one
+    Game.new first_game_id
+  end
+
+  def game_two
+    Game.new second_game_id
   end
 
   def answer(user, answer)
