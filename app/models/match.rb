@@ -1,8 +1,8 @@
 class Match < ApplicationRecord
-  has_many :answers, class_name: MatchAnswer
+  has_many :answers, class_name: 'MatchAnswer'
 
-  belongs_to :forward_user, class_name: User
-  belongs_to :backward_user, class_name: User
+  belongs_to :forward_user, class_name: 'User'
+  belongs_to :backward_user, class_name: 'User'
   belongs_to :proposal
 
   def users

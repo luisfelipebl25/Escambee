@@ -1,5 +1,5 @@
 class Proposal < ApplicationRecord
-  has_many :answers, class_name: ProposalAnswer
+  has_many :answers, class_name: 'ProposalAnswer'
 
   def first_game
     Game.new first_game_id
