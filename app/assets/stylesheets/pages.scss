@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
+
+body {
+  font-family: 'Rubik', sans-serif !important;
+} 
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.modal-content {
+  h2 {
+    margin-bottom: 20px;
+    color: #0e8ce4;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
+.header {
+  margin-bottom: 15px;
+
+  .main-menu {
+    margin-top: 15px;
+  }
+}
+
+.card-col {
+  margin-bottom: 10px;
+  margin-top: 8px;
+}
+
+.carousel-item {
+  position: relative !important;
+}
+
+.black-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  -webkit-transform: translate3d(-50%,-50%,0);
+  -moz-transform: translate3d(-50%,-50%,0);
+  -ms-transform: translate3d(-50%,-50%,0);
+  -o-transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%,-50%,0);
+}
+
+.hero h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.games-row {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.game-pic {
+  width: 120px;
+  height: 190px;
+  max-height: 190px;
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  opacity: 0; 
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all .3s ease-in-out;
+}
+
+.card-img-overlay.activate {
+  opacity: 1 !important;
+}
+
+.card-img-top {
+  height: 250px;
+  max-height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card, .modal-content {
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  border: solid 1px #e8e8e8 !important;
+}
+
+.card {
+  margin: 10px 0 20px 0;
+  .card-title {
+    font-size:18px;
+  }
+}
+
+.col-md-3 {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+
+.logo-img {
+  cursor: pointer; 
+  width: 50px; 
+  height: auto;
+}
+
+.logotipo {
+  font-size: 35px;
+  font-weight: 500; 
+}
+
+.col-content {
+  margin: 10px 0;
+}
+
+a.text-primary:hover, a.text-primary:focus, a.text-primary:link {
+  color: #0e8ce4 !important;
+}
+
+.form-control {
+  height: calc(2.1em + 0.75rem + 2px) !important;
+  line-height: 2.1 !important;
+  font-family: 'Rubik', sans-serif !important;
+  font-weight: 300 !important;
+}
+
+.menu-container {
+  a {
+    font-size: 18px;
+    color: #000;
+    text-decoration: none !important;
+
+    &:hover {
+      color: #0e8ce4 !important;
+    }
+  }
+
+
+  .d-flex {
+    margin-left: 0.8rem;
+
+    .text-muted {
+      margin-top: -2px !important;
+    }
+  }
+}
+
+.bg-light {
+  background-color: #fafafa !important;
+}
+
+@media(max-width: 768px) {
+  .col-content {
+    justify-content: center !important;
+
+  } 
+}
+
+@media(min-width: 768px) {
+  .col-content:last-of-type {
+    justify-content: flex-end !important;
+
+  } 
+}
+
+@media(max-width: 992px) {
+  .navbar-nav {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.2rem !important;
+    padding-left: 0.2rem !important;
+  } 
+}
+
+@media(max-width: 500px) {
+  .hero-img {
+    height: 150vh !important;
+  }
+  .hero {
+    padding: 2rem 0;
+  }
+}
+
+.navbar-nav {
+  flex-direction: row !important;
+
+  a {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.8) !important;
+
+    div &:nth-child(1) {
+      margin-right: 20px;
+    }
+  
+    :not(:last-child) {
+      margin-right: 30px;
+    }
+  
+    &:hover {
+      color: #8a8a8a !important;
+    }
+  }
+    
+  span {
+    color: rgba(0, 0, 0, 0.8) !important;
+  }
+}
+
+.how-it-works {
+  margin: 40px 0;
+}
+
+h2 {
+  font-size: 1.9rem !important;
+}
+
+.steps {
+    
+  .col-md-4 {
+    display: flex !important;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    
+    p {
+      color: #1f2427;
+      font-size: 15px;
+      margin-top: 10px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    span {
+      color: #FCE205 !important;
+    }
+    
+  }
+  .col-md-4:nth-child(odd) {
+    background-color: #F5F5F5;
+  }
+}
+

@@ -1,0 +1,82 @@
+<!--Carrosel-->
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+    <!--Imagens - Carrosel-->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'https://wallpaperplay.com/walls/full/c/1/4/101203.jpg', class: 'd-block w-100 hero-img',
+        style: "height: 100vh; object-fit: cover;"%>
+        <div class="black-overlay">
+        
+        </div>
+      </div>
+      <div class="hero">
+        <h5 class="my-3 text-primary">Bem-vindo(a) ao Escambee</h5>
+        <h1 class="my-3">Troque seus jogos de maneira fácil!</h1>
+        <p class="my-4">Com o Escambee, é possível fazer uma lista com os jogos que você deseja receber e selecionar
+        os que você tem e quer dar e troca. Você pode ver se seus jogos desejados estão disponíveis, 
+        e, então, realizar uma troca.</p>
+
+        <%= link_to 'Criar conta', new_user_registration_path, class: "btn btn-primary" %>     
+      </div>  
+    </div>  
+  </div>
+
+
+<div class="container how-it-works">
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h2>Como <br>funciona?</h2>
+    </div>
+    <div class="col-md-9">
+      <div class="row steps">
+        <div class="col-md-4">
+          <span><i class="far fa-hand-pointer fa-3x"></i></span>
+          <p>Escolha os jogos que você gostaria de <b>receber</b> e <b>dar em troca</b></p>
+        </div>
+        
+        <div class="col-md-4">
+          <span> <i class="fas fa-exchange-alt fa-3x"></i></span>
+          <p>Realize uma troca e espere que outro usuário a aceite</p>
+        </div>
+        <div class="col-md-4">
+          <span><i class="far fa-handshake fa-3x"></i></span>   
+          <p class="mb-1 font-weight-bold">Troca concluída!</p> 
+          <small class="text-muted">A partir do término da mesma, os usuários podem conversar sobre 
+          os detalhes.</small>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Jogos disponíveis</h2>
+      <hr>
+    </div>
+    <div class="col-md-3 col-6">
+       <div class="card">
+        <%= image_tag 'http://via.placeholder.com/300x300', class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">Nome do jogo</h5>
+          <% if user_signed_in? %>
+            <%= link_to 'Trocar item', class: "btn btn-primary" %>
+          <% else %>
+            <p class="text-muted">
+              <%= link_to 'Entre', new_user_session_path%> ou 
+              <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
+            </p>
+            
+          <% end %>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
+
+
+  
+        <%#= image_tag 'https://via.placeholder.com/500x500', class: 'card-img-top' %>
+        

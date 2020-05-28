@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
 # Use sqlite3 as the database for Active Record
@@ -32,6 +31,18 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'bootstrap', '~> 4.5.0'
+gem 'jquery-rails'
+gem 'devise'
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views', '~> 1.0'
+gem 'font-awesome-rails'
+gem 'inline_svg';
+gem 'giantbomb-api', '~> 1.6.0';
+gem 'figaro';
+gem 'kaminari';
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
