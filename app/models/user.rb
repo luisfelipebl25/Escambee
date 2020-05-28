@@ -18,11 +18,11 @@ class User < ApplicationRecord
   end
 
   def wishlist
-    Wishlist.new self
+    Gamelist.new self, :wishes, Wish
   end
 
   def ownlist
-    Ownlist.new self
+    Gamelist.new self, :owns, Own
   end
 
   def wishes?(game)
