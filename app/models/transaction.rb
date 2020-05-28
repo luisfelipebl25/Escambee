@@ -1,5 +1,4 @@
 class Transaction < ApplicationRecord
-  # attr_accessor :user, :given, :received
   belongs_to :user
 
   def given
@@ -24,12 +23,11 @@ class Transaction < ApplicationRecord
     user.ownlist.delete(given)
     user.ownlist.push received
     user.exchanges.push self
-    @executed = true
   end
 
   private
 
   def executed?
-    @executed
+    self.persisted?
   end
 end

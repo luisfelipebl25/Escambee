@@ -3,8 +3,6 @@ class Game
 
   def initialize(id = nil)
     @id = id
-    @who_wishes = []
-    @who_owns = []
   end
 
   def ==(other)

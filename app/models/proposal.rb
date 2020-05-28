@@ -1,11 +1,5 @@
 class Proposal < ApplicationRecord
-  # attr_accessor :answers
-
   has_many :answers, class_name: ProposalAnswer
-
-  # after_initialize do
-  #   @answers = []
-  # end
 
   def first_game
     Game.new first_game_id
