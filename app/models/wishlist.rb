@@ -14,8 +14,6 @@ class Wishlist
   def push(game)
     @list.push game
     @user.wishes.push Wish.new game_id: game.id
-
-    game.who_wishes.push @user
   end
 
   def delete(game)

@@ -6,16 +6,15 @@ RSpec.describe Game do
 
   describe '#who_owns' do
     subject { game.who_owns }
-    it 'retorna usuários que possuem o jogo' do
+    before(:each) do
       user.ownlist.push game
-
-      expect(subject).to include(user)
+    end
+    it 'retorna usuários que possuem o jogo' do
+      expect(subject).to include(User.first)
     end
 
     context 'quando um usuário remover o jogo da lista' do
       it 'o usuário não mais está presente na lista' do
-        user.ownlist.push game
-        
         expect { user.ownlist.delete game }.to change(subject, :count).by(-1)
       end
     end
@@ -26,7 +25,7 @@ RSpec.describe Game do
     it 'retorna usuários que desejam o jogo' do
       user.wishlist.push game
 
-      expect(subject).to include(user)
+      expect(subject).to include(User.first)
     end
 
     context 'quando um usuário remover o jogo da lista' do

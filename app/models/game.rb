@@ -1,6 +1,5 @@
 class Game
   attr_accessor :id
-  attr_accessor :who_owns, :who_wishes
 
   def initialize(id = nil)
     @id = id
@@ -10,5 +9,13 @@ class Game
 
   def ==(other)
     id == other.id
+  end
+
+  def who_owns
+    User.joins(:owns).where(owns: { game_id: id })
+  end
+
+  def who_wishes
+    User.joins(:wishes).where(wishes: { game_id: id})
   end
 end

@@ -14,8 +14,6 @@ class Ownlist
   def push(game)
     @list.push game
     @user.owns.push Own.new game_id: game.id
-
-    game.who_owns.push @user
   end
 
   def delete(game)
