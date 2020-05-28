@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200528032830) do
+ActiveRecord::Schema.define(version: 20200528035048) do
+
+  create_table "match_answers", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "user_id"
+    t.boolean "answer"
+    t.index ["match_id"], name: "index_match_answers_on_match_id"
+    t.index ["user_id"], name: "index_match_answers_on_user_id"
+  end
 
   create_table "matches", force: :cascade do |t|
     t.integer "proposal_id"

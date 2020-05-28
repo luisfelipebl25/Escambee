@@ -1,13 +1,8 @@
-class MatchAnswer
-  attr_accessor :match, :user, :answer
-
-  def initialize(match, user, answer)
-    @match = match
-    @user = user
-    @answer = answer
-  end
+class MatchAnswer < ApplicationRecord
+  belongs_to :match
+  belongs_to :user
 
   def accepted?
-    @answer
+    answer
   end
 end

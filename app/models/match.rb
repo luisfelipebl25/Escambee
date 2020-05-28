@@ -21,7 +21,7 @@ class Match < ApplicationRecord
     return false if answers.any? { |ans| ans.user == user }
     return false unless able_to_accept?(user)
 
-    match_answer = MatchAnswer.new(proposal, user, answer)
+    match_answer = MatchAnswer.new(match: self, user: user, answer: answer)
     user.match_answers.push match_answer
   end
 
