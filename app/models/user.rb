@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attr_accessor :name
-  attr_reader :ownlist
   attr_accessor :proposal_answers, :match_answers
 
   has_many :wishes
@@ -15,12 +14,15 @@ class User < ApplicationRecord
   after_initialize do
     @proposal_answers = []
     @match_answers = []
-    @ownlist = Ownlist.new self
     @exchanges = []
   end
 
   def wishlist
     Wishlist.new self
+  end
+
+  def ownlist
+    Ownlist.new self
   end
 
   def wishes?(game)

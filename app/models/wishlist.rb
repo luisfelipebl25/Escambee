@@ -10,7 +10,6 @@ class Wishlist
     list.each(&block)
   end
 
-
   def push(game)
     @user.wishes.push Wish.new game_id: game.id
   end

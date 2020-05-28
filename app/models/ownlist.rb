@@ -1,30 +1,27 @@
 class Ownlist
   include Enumerable
-  delegate :empty?, :delete, to: :list
+  delegate :empty?, to: :list
 
   def initialize(user)
-    @list = user.owns.map { |wish| Game.new wish.game_id }
     @user = user
   end
 
   def each(&block)
-    @list.each(&block)
+    list.each(&block)
   end
 
   def push(game)
-    @list.push game
     @user.owns.push Own.new game_id: game.id
   end
 
   def delete(game)
-    @list.delete game
-
     @user.owns.where(game_id: game.id).first.destroy!
+    @user.owns.reload
   end
 
   private
 
   def list
-    @list
+    @user.owns.map { |wish| Game.new wish.game_id }
   end
 end
