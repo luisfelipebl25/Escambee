@@ -29,7 +29,7 @@ a:hover {
 }
 
 .card-col {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   margin-top: 8px;
 }
 
@@ -72,8 +72,8 @@ a:hover {
 
 .game-pic {
   width: 120px;
-  height: 190px;
-  max-height: 190px;
+  height: 200px;
+  max-height: 200px;
   object-fit: cover;
 }
 
@@ -258,5 +258,11 @@ h2 {
   .col-md-4:nth-child(odd) {
     background-color: #F5F5F5;
   }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;  
+  width: 100%;
 }
 

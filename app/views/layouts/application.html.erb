@@ -11,6 +11,7 @@
     <%= favicon_link_tag asset_path('bee.ico') %>
   </head>
   
+  <body class="h-100" style="min-height: 100vh;">
   <div class="header">
     <% unless !user_signed_in? %>
       <nav class="navbar border-bottom navbar-expand-lg navbar-light bg-light">
@@ -35,7 +36,7 @@
           <h2 class="mb-0"><%= link_to 'Escambee', root_path, class: "logotipo my-auto text-primary ml-2" %></h2>
         </div>
        
-        <div class="col-lg-6 col-md-7 col-content">
+        <div class="col-lg-5 col-md-7 col-content">
           <%= form_tag search_path, method: :get do %>
           <div class="input-group">
               <%= text_field_tag :search, params[:search], placeholder: "Procurar jogo...", 
@@ -49,19 +50,21 @@
             <% end %>
           </div>
         </div>
-        <div class="col-lg-3 col-md-5 d-flex col-content">
+        <div class="col-lg-4 col-md-5 d-flex col-content">
           <div class="menu-container d-flex align-items-center  ">
           <% if user_signed_in? %>
-          <i class="far fa-heart fa-2x"></i>
+          <i class="fas fa-list fa-2x"></i>
             <div class="d-flex flex-column">
-              <div class="teste"><%= link_to 'Desejados', profile_path %> </div>
-              <div class="text-muted">1</div>
+              <div class="teste"><%= link_to 'Coleção', collection_path %> </div>
+              <small class="text-muted">
+                Deseja: <%= current_user.wishlist.count %> / Possui: <%= current_user.ownlist.count %></small>
             </div>
+          
           <i class="far fa-user fa-2x ml-4"></i>
           
             <div class="d-flex flex-column">
               <div><%= link_to 'Perfil', profile_path %> </div>
-              <div class="text-muted">1 jogo</div>
+              <small class="text-muted">Trocas e recebidos</small>
             </div>
           </div> 
           <% else %>
@@ -79,7 +82,7 @@
     </div>
   </div>
   
-  <body>
+  
     <% if devise_controller? %>
       <div class="modal-dialog modal-dialog-centered text-center">
         <div class="col-md-12 col-sm-12 p-4 mx-auto container-wrapper modal-content">
@@ -89,10 +92,11 @@
     <% else %>
       <%= yield %>
     <% end %>
-  </body>
-  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+
+  <footer class="py-4 bg-dark footer text-white-50 mt-auto">
     <div class="container text-center">
       <small>Copyright &copy; Escambee</small>
     </div>
   </footer>
+  </body>
 </html>

@@ -4,8 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  attr_accessor :name
-
   has_many :proposal_answers
   has_many :match_answers
 
