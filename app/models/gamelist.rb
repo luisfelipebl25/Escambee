@@ -1,6 +1,6 @@
 class Gamelist
   include Enumerable
-  delegate :empty?, to: :list
+  delegate :to_a, :empty?, to: :list
 
   def initialize(user, method, entity)
     @user = user

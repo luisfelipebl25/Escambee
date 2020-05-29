@@ -64,7 +64,12 @@
           <div class="card-body">
             <h5 class="card-title"><%= game.name%></h5>
             <% if user_signed_in? %>
-              <%= link_to 'Trocar item', '', class: "btn btn-primary" %>
+              
+              <%= link_to 'Quero', add_to_wishlist_path(id: game.id), class: 'btn btn-primary add',
+                  method: :post, remote: true %>
+                  
+              <%= link_to 'Tenho', add_to_ownlist_url(id: game.id), class: 'btn btn-warning',
+                  method: :post, remote: true %>
             <% else %>
               <p class="text-muted">
                 <%= link_to 'Entre', new_user_session_path%> ou 

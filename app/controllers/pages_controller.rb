@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   end 
 
   def profile
+    match = GameExchange::Matcher.new current_user.wishlist.to_a + current_user.ownlist.to_a
+    proposals = match.proposals.each(&:save!)
     @proposals = current_user.proposals(Proposal.all)
   end  
 
