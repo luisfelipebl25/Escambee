@@ -25,6 +25,29 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#can_add_in_list?' do
+    let(:game) { build :game }
+    context 'quando o jogo não está na lista de desejos ou de jogos que possui' do
+      it 'retorna true' do
+        expect(subject.can_add_in_list?(game)).to be true
+      end
+    end
+
+    context 'quando o jogo está na lista de desejos' do
+      it 'retorna false' do
+        subject.wishlist.push game
+        expect(subject.can_add_in_list?(game)).to be false
+      end
+    end
+
+    context 'quando o jogo está na lista de jogos que possui' do
+      it 'retorna false' do
+        subject.ownlist.push game
+        expect(subject.can_add_in_list?(game)).to be false
+      end
+    end
+  end
+
   describe '#proposals' do
     let(:user) { create :user, owns: [games.first], wishes: [games.second] }
     it 'varre as propostas em busca daquelas que o usuário pode aceitar' do

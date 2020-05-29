@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :proposal_answers
   has_many :match_answers
 
@@ -23,16 +23,20 @@ class User < ApplicationRecord
     wishlist.include? game
   end
 
+  def owns?(game)
+    ownlist.include? game
+  end
+
+  def can_add_in_list?(game)
+    !(wishes?(game) || owns?(game))
+  end
+
   def proposals(proposals)
     proposals.select { |proposal| proposal.able_to_accept? self }
   end
 
   def matches(matches)
     matches.select { |match| match.users.include? self }
-  end
-
-  def owns?(game)
-    ownlist.include? game
   end
 
   def exchange(proposal)
