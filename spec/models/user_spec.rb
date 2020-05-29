@@ -30,6 +30,22 @@ RSpec.describe User, type: :model do
     it 'varre as propostas em busca daquelas que o usuário pode aceitar' do
       expect(user.proposals([proposal])).to contain_exactly(proposal)
     end
+
+    context 'quando o usuário remove um dos elementos da lista de desejos' do
+      it 'não retorna mais nenhuma proposta que envolve receber tal jogo' do
+        user.wishlist.delete(games.second)
+
+        expect(user.proposals([proposal])).to be_empty
+      end
+    end
+
+    context 'quando o usuário remove um dos elementos da lista de jogos que possui' do
+      it 'não retorna mais nenhuma proposta que envolve trocar tal jogo' do
+        user.ownlist.delete(games.first)
+
+        expect(user.proposals([proposal])).to be_empty
+      end
+    end
   end
 
   describe '#answers' do
