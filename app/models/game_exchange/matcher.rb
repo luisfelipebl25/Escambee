@@ -7,15 +7,15 @@ module GameExchange
     def proposals
       proposals = []
 
-      @games.each do |game|
-        @games.each do |another_game|
+      @games.each_with_index do |game, index|
+        @games[index..-1].each do |another_game|
           if game != another_game && proposable(game, another_game)
             proposals.push Proposal.new first_game_id: game.id, second_game_id: another_game.id
           end
         end
       end
 
-      proposals.uniq
+      proposals
     end
 
     def proposable(game, another_game)
