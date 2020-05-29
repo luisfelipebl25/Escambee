@@ -10,12 +10,22 @@ class PagesController < ApplicationController
   end 
 
   def profile
+    @proposals = current_user.proposals(Proposal.all)
   end  
+
+  def collection
+    @wishes = current_user.wishes
+    @owns = current_user.owns
+  end 
   
   def search
     search_params
     @games = GiantBomb::Search.new().query(@search).resources('game').fetch
     paginate(@games, 8)
+  end 
+
+  def find_game(id)
+    GiantBomb::Game.detail(id)
   end 
 
   private
