@@ -1,29 +1,21 @@
 class Transaction < ApplicationRecord
   belongs_to :user
+  belongs_to :proposal
 
-  validates_presence_of :given_game_id, :received_game_id
-
-  validates :given_game_id, format: { with: /\A\d+\Z/ }
-  validates :received_game_id, format: { with: /\A\d+\Z/ }
+  validates_presence_of :user, :proposal
 
   def given
-    Game.new given_game_id
-  end
-
-  def given=(game)
-    self.given_game_id = game.id
+    @given ||= user.answer(proposal).to_give
   end
 
   def received
-    Game.new received_game_id
-  end
-
-  def received=(game)
-    self.received_game_id = game.id
+    @received ||= user.answer(proposal).to_receive
   end
 
   def execute
     return false if executed?
+
+    given; received
     user.wishlist.delete(received)
     user.ownlist.delete(given)
     user.ownlist.push received

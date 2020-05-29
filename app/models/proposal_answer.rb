@@ -3,12 +3,11 @@ class ProposalAnswer < ApplicationRecord
   belongs_to :user
   enum direction: [:forward, :backward]
 
-  before_save do
-    direction = define_direction(user, proposal)
-  end
+  validates_presence_of :direction
+  validates_inclusion_of :answer, in: [true, false]
 
-  def direction
-    define_direction(user, proposal)
+  before_validation do
+    self.direction = proposal_direction
   end
 
   def accepted?
@@ -20,20 +19,17 @@ class ProposalAnswer < ApplicationRecord
 
     Transaction.new(
       user: user,
-      given_game_id: to_give.id,
-      received_game_id: to_receive.id
+      proposal: proposal
     )
   end
 
   def forward?
-    direction == :forward
+    direction.to_sym == :forward
   end
 
   def backward?
     !forward?
   end
-
-  private
 
   def to_give
     forward? ? proposal.first_game : proposal.second_game
@@ -43,7 +39,11 @@ class ProposalAnswer < ApplicationRecord
     forward? ? proposal.second_game : proposal.first_game
   end
 
-  def define_direction(user, proposal)
+  private
+
+  def proposal_direction
+    return nil if user.nil? || proposal.nil?
+
     if user.owns?(proposal.first_game) && user.wishes?(proposal.second_game)
       :forward
     elsif user.owns?(proposal.second_game) && user.wishes?(proposal.first_game)

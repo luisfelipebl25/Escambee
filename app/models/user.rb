@@ -13,12 +13,6 @@ class User < ApplicationRecord
   has_many :owns
   has_many :exchanges, class_name: 'Transaction'
 
-  after_initialize do
-    @proposal_answers = []
-    @match_answers = []
-    @exchanges = []
-  end
-
   def wishlist
     Gamelist.new self, :wishes, Wish
   end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :proposal do
     transient do
-      games { [] }
+      games { build_list :game, 2 }
     end
 
     first_game_id { games.first.id }

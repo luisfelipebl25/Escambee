@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200528035048) do
+ActiveRecord::Schema.define(version: 20200528223112) do
 
   create_table "match_answers", force: :cascade do |t|
     t.integer "match_id"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20200528035048) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id"
-    t.string "given_game_id"
-    t.string "received_game_id"
+    t.integer "proposal_id"
+    t.index ["proposal_id"], name: "index_transactions_on_proposal_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 

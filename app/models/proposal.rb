@@ -18,9 +18,7 @@ class Proposal < ApplicationRecord
     return false unless able_to_accept?(user)
     return false if answers.where(user: user).any?
 
-    ProposalAnswer.create(proposal: self, user: user, answer: answer)
-    user.reload
-    self.reload
+    ProposalAnswer.create!(proposal: self, user: user, answer: answer)
 
     true
   end

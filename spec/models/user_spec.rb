@@ -37,13 +37,13 @@ RSpec.describe User, type: :model do
       it 'forward' do
         user = create :user, owns: [games.first], wishes: [games.second]
         proposal.answer(user, true)
-        expect(user.proposal_answers.first.direction).to eq(:forward)
+        expect(user.proposal_answers.first.direction.to_sym).to eq(:forward)
       end
 
       it 'backward' do
         user = create :user, owns: [games.second], wishes: [games.first]
         proposal.answer(user, true)
-        expect(user.proposal_answers.first.direction).to eq(:backward)
+        expect(user.proposal_answers.first.direction.to_sym).to eq(:backward)
       end
     end
   end

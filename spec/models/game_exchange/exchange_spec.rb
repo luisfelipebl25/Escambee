@@ -75,11 +75,11 @@ RSpec.describe GameExchange::Exchange do
 
       describe 'Usuário 1' do
         it 'não deseja mais jogo B' do
-          expect(user_one.wishlist).to_not include(proposal.second_game)
+          expect(user_one.reload.wishlist).to_not include(proposal.second_game)
         end
 
         it 'não possui mais jogo A' do
-          expect(user_one.ownlist).to_not include(proposal.first_game)
+          expect(user_one.reload.ownlist).to_not include(proposal.first_game)
         end
 
         it 'possui jogo B' do
