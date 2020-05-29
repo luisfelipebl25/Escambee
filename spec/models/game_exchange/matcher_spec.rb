@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe GameExchange::Matcher do
-  let(:games) { build_list :game, 3}
+  let(:games) { build_list :game, 3 }
   let(:user) { create :user }
   let(:another_user) { create :user }
   let(:yet_another_user) { create :user }
@@ -12,7 +14,7 @@ RSpec.describe GameExchange::Matcher do
       before(:each) do
         user.ownlist.push games.first
         user.wishlist.push games.second
-  
+
         another_user.ownlist.push games.second
         another_user.wishlist.push games.first
       end
@@ -27,7 +29,7 @@ RSpec.describe GameExchange::Matcher do
 
       it 'não retorna propostas já salvas no banco' do
         subject.proposals.each(&:save!)
-  
+
         expect(subject.proposals).to be_empty
       end
     end
@@ -36,13 +38,13 @@ RSpec.describe GameExchange::Matcher do
       it 'uma proposta não é gerada' do
         user.ownlist.push games.first
         user.wishlist.push games.second
-  
+
         another_user.ownlist.push games.second
         another_user.wishlist.push games.third
-  
+
         yet_another_user.ownlist.push games.third
         yet_another_user.wishlist.push games.first
-  
+
         expect(subject.proposals).to be_empty
       end
     end
@@ -70,7 +72,7 @@ RSpec.describe GameExchange::Matcher do
       another_user.ownlist.push games.second
       another_user.wishlist.push games.first
     end
-    context 'dois usuários aceitam uma troca, sendo um aceitando em cada direção' do
+    context 'dois usuários aceitam uma troca em direções distintas' do
       it 'gera um match' do
         proposals = subject.proposals
 
@@ -111,7 +113,8 @@ RSpec.describe GameExchange::Matcher do
         proposals = subject.proposals
 
         user.proposals(proposals).first.answer(user, true)
-        yet_another_user.proposals(proposals).first.answer(yet_another_user, true)
+        yet_another_user
+          .proposals(proposals).first.answer(yet_another_user, true)
 
         expect(subject.has_matches?(proposals.first)).to be false
       end

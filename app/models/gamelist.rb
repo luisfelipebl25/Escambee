@@ -14,7 +14,7 @@ class Gamelist
 
   def push(game)
     entity = @entity.new game_id: game.id
-    user_method.push entity unless user_method.pluck(:game_id).include? game.id
+    user_method.push entity unless entity.valid?
   end
 
   def delete(game)

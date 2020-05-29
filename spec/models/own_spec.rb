@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Own, type: :model do
-  let(:user) { create :user }
-  let(:game) { build :game }
-
   describe 'validações' do
     it { expect(build(:own)).to be_valid }
 
@@ -13,7 +10,6 @@ RSpec.describe Own, type: :model do
 
     it 'game_id precisa ser um número' do
       expect(build :own, game_id: 'ASAS' ).to_not be_valid
-      expect(build :own, game_id: '1ASAS' ).to_not be_valid
     end
   end
 end
