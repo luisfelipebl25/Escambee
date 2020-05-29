@@ -5,6 +5,7 @@ class Gamelist
   def initialize(user, method, entity)
     @user = user
     @method = method
+    @another_method = [:wishes, :owns].find {|m| m != method }
     @entity = entity
   end
 
@@ -14,6 +15,8 @@ class Gamelist
 
   def push(game)
     entity = @entity.new game_id: game.id
+    return if user_another_method.where(game_id: game.id).any?
+
     user_method.push entity unless entity.valid?
   end
 
@@ -26,6 +29,10 @@ class Gamelist
 
   def user_method
     @user.method(@method).call
+  end
+
+  def user_another_method
+    @user.method(@another_method).call
   end
 
   def list

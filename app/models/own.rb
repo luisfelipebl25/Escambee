@@ -2,7 +2,6 @@ class Own < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :user, :game_id
-
   validates_uniqueness_of :game_id, scope: [:user_id]
 
   validates :game_id, numericality: { only_integer: true }

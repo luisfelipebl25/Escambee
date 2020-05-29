@@ -13,7 +13,13 @@ RSpec.describe Gamelist do
     it 'um mesmo jogo não pode ser adicionado duas vezes' do
       user.wishlist.push game
 
-      expect { user.wishlist.push game}.to_not change(user.wishes, :count)
+      expect { user.wishlist.push game }.to_not change(user.wishes, :count)
+    end
+
+    it 'não pode ser adicionado caso esteja na lista de jogos que possui' do
+      user.ownlist.push game
+
+      expect { user.wishlist.push game }.to_not change(user.wishes, :count)
     end
 
     context 'remover um elemento à wishlist' do
@@ -40,6 +46,12 @@ RSpec.describe Gamelist do
 
     it 'um mesmo jogo não pode ser adicionado duas vezes' do
       user.ownlist.push game
+
+      expect { user.ownlist.push game}.to_not change(user.owns, :count)
+    end
+
+    it 'não pode ser adicionado caso esteja na lista de desejos' do
+      user.wishlist.push game
 
       expect { user.ownlist.push game}.to_not change(user.owns, :count)
     end
