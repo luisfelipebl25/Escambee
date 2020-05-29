@@ -5,6 +5,15 @@ RSpec.describe Proposal do
   let(:proposal) { create :proposal, games: games }
   let(:user_one) { create :user, owns: [proposal.first_game], wishes: [proposal.second_game] }
   let(:user_two) { create :user, owns: [proposal.second_game], wishes: [proposal.first_game] }
+
+  describe 'validações' do
+    it { expect(build :proposal).to be_valid }
+
+    it 'uma proposta com os mesmos jogos de outra e na mesma ordem é inválido' do
+      proposal
+      expect(build :proposal, games: games).to_not be_valid
+    end
+  end
   
   describe '#answer' do
     context 'Usuário não possui jogo' do

@@ -3,8 +3,10 @@ class Proposal < ApplicationRecord
 
   validates_presence_of :first_game_id, :second_game_id
 
-  validates :first_game_id, format: { with: /\A\d+\Z/ }
-  validates :second_game_id, format: { with: /\A\d+\Z/ }
+  validates :first_game_id, numericality: { only_integer: true }
+  validates :second_game_id, numericality: { only_integer: true }
+
+  validate :no_duplicates
 
   def first_game
     Game.new first_game_id
@@ -40,5 +42,13 @@ class Proposal < ApplicationRecord
 
   def games
     [first_game, second_game]
+  end
+
+  private
+
+  def no_duplicates
+    return unless Proposal.all.map(&:games).map(&:sort).include? games.sort
+
+    errors.add(:games, 'Não pode repetir')
   end
 end

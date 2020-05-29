@@ -15,7 +15,7 @@ module GameExchange
         end
       end
 
-      proposals
+      proposals.select(&:valid?)
     end
 
     def proposable(game, another_game)
