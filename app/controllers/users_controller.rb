@@ -20,7 +20,12 @@ class UsersController < ApplicationController
   end
 
   def answer_proposal
-    params['answer'] == true ? proposal.answer(current_user, true) : proposal.answer(current_user, false)
+    # params['answer'] == true ? proposal.answer(current_user, true) : proposal.answer(current_user, false)
+    if params['answer']
+      current_user.proposals(Proposal.all).answer(current_user, true)
+    else 
+      current_user.proposals(Proposal.all).answer(current_user, false)
+    end 
   end 
 
   def create_game(params)

@@ -9,6 +9,7 @@
             <% if user_signed_in? %>
               <%= link_to 'Quero', add_to_wishlist_path(id: game['id']), class: 'btn btn-primary',
                   method: :post, remote: true %>
+
               <%= link_to 'Tenho', add_to_ownlist_url(id: game['id']), class: 'btn btn-warning',
                   method: :post, remote: true %>
             <% else %>

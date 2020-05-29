@@ -13,16 +13,20 @@
       <% @proposals.each do |proposal| %>
         <div class="col-md-3 card-col">
           <div class="card">
-            <%= image_tag "https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/1881070-box_crashttr.png", class: "card-img-top" %>
+            <%= image_tag find_game(proposal.first_game_id, 'image'), class: "card-img-top" %>
+            
             <div class="card-body">
-              <h5 class="card-title mb-0">Crash Tag Team Racing</h5>
+              <h5 class="card-title mb-0"><%= find_game(proposal.first_game_id, 'name') %></h5>
             </div>
             <div class="card-footer text-center">
-              <%= link_to 'Trocar', answer_proposal(answer: true), method: :post, class: "btn btn-success" %>
-              <%= link_to 'Não trocar', answer_proposal(answer: false), method: :post, class: "btn btn-danger"%>
+              <%= link_to 'Trocar', answer_proposal_path(answer: true), method: :post, 
+              remote: true, class: "btn btn-success" %>
+              <%= link_to 'Não trocar', answer_proposal_path(answer: false), method: :post, 
+              remote: true, class: "btn btn-danger"%>
             </div>
           </div> 
         </div>
+        <%= image_tag find_game(proposal.second_game_id, 'image'), class: "img-fluid" %>
       <% end %>
     <% end %>
   </div>
