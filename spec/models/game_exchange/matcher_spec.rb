@@ -81,14 +81,25 @@ RSpec.describe GameExchange::Matcher do
       end
     end
 
-    context 'um usuário aceita e outro rejeita' do
+    context 'quando nenhum dos usuários aceita a troca' do
+      it 'não gera matches' do
+        proposals = subject.proposals
+
+        user.proposals(proposals).first.answer(user, false)
+        another_user.proposals(proposals).first.answer(another_user, false)
+
+        expect(subject.has_matches?(proposals.first)).to be false
+      end
+    end
+
+    context 'quando um usuário aceita e outro rejeita' do
       it 'não gera matches' do
         proposals = subject.proposals
 
         user.proposals(proposals).first.answer(user, true)
         another_user.proposals(proposals).first.answer(another_user, false)
 
-        expect(subject.has_matches?(proposals.first)).to be true
+        expect(subject.has_matches?(proposals.first)).to be false
       end
     end
 
