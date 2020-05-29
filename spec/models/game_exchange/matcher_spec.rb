@@ -1,21 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe GameExchange::Matcher do
-  let(:games) { build_list :game, 2 }
+  let(:games) { build_list :game, 3}
   let(:user) { create :user }
   let(:another_user) { create :user }
   let(:yet_another_user) { create :user }
   subject { described_class.new games }
 
   describe '#proposals' do
-    before(:each) do
-      user.ownlist.push games.first
-      user.wishlist.push games.second
-
-      another_user.ownlist.push games.second
-      another_user.wishlist.push games.first
-    end
     context 'quando há dois jogos possiveis de serem trocados por dois usuários' do
+      before(:each) do
+        user.ownlist.push games.first
+        user.wishlist.push games.second
+  
+        another_user.ownlist.push games.second
+        another_user.wishlist.push games.first
+      end
 
       it 'gera uma proposta' do
         expect(subject.proposals.map(&:attributes)).to include(Proposal.new(first_game_id: games.first.id, second_game_id: games.second.id).attributes)
@@ -24,12 +24,27 @@ RSpec.describe GameExchange::Matcher do
       it 'gera uma proposta única' do
         expect(subject.proposals.count).to eq(1)
       end
+
+      it 'não retorna propostas já salvas no banco' do
+        subject.proposals.each(&:save!)
+  
+        expect(subject.proposals).to be_empty
+      end
     end
 
-    it 'não retorna propostas já salvas no banco' do
-      subject.proposals.each(&:save!)
-
-      expect(subject.proposals).to be_empty
+    context 'quando há três usuários que, entre eles poderiam realizar uma troca, mas individualmente não' do
+      it 'uma proposta não é gerada' do
+        user.ownlist.push games.first
+        user.wishlist.push games.second
+  
+        another_user.ownlist.push games.second
+        another_user.wishlist.push games.third
+  
+        yet_another_user.ownlist.push games.third
+        yet_another_user.wishlist.push games.first
+  
+        expect(subject.proposals).to be_empty
+      end
     end
   end
 
