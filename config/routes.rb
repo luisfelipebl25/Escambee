@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete 'remove_from_ownlist', to: 'users#remove_from_ownlist'
 
   post 'answer_proposal', to: 'users#answer_proposal'
+  post 'answer_match', to: 'users#answer_match'
 
   get '/profile', to: 'pages#profile'
   get '/collection', to: 'pages#collection'

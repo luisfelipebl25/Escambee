@@ -68,8 +68,8 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <%= link_to 'Trocar', answer_proposal_path(answer: true), class: "btn btn-success"%>
-                <%= link_to 'Não trocar', answer_proposal_path(answer: false), class: "btn btn-danger"%>
+                <%= link_to 'Trocar', answer_match_path(answer: true, match_id: match.id), method: :post, remote: true, class: "btn btn-success"%>
+                <%= link_to 'Não trocar', answer_match_path(answer: false, match_id: match.id), method: :post, remote: true, class: "btn btn-danger"%>
               </div>
             </div>
           </div>

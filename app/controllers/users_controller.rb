@@ -24,6 +24,11 @@ class UsersController < ApplicationController
             .answer(current_user, params['answer'] == 'true')
   end
 
+  def answer_match
+    Match.find(params['match_id'])
+         .answer(current_user, params['answer'] == 'true')
+  end
+
   def create_game(params)
     @game = Game.new(params) 
   end
