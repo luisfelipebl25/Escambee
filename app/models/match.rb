@@ -5,7 +5,7 @@ class Match < ApplicationRecord
   belongs_to :backward_user, class_name: 'User'
   belongs_to :proposal
 
-  validates_uniqueness_of :forward_user, scope: [:backward_user]
+  validates_uniqueness_of :forward_user, scope: [:backward_user, :proposal]
 
   def users
     [forward_user, backward_user]
