@@ -16,6 +16,26 @@ class Proposal < ApplicationRecord
     Game.new second_game_id
   end
 
+  def given_game(user)
+    forward?(user) ? first_game : second_game
+  end
+
+  def received_game(user)
+    !forward?(user) ? first_game : second_game
+  end
+
+  def forward?(user)
+    direction(user) == :forward
+  end
+
+  def direction(user)
+    if user.owns?(first_game) && user.wishes?(second_game)
+      :forward
+    elsif user.owns?(second_game) && user.wishes?(first_game)
+      :backward
+    end
+  end
+
   def answer(user, answer)
     return false unless able_to_accept?(user)
     return false if answers.where(user: user).any?

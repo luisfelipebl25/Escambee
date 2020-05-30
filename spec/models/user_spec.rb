@@ -71,6 +71,26 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#pending_proposals' do
+    let(:user) { create :user, owns: [games.first], wishes: [games.second] }
+
+    it 'retorna propostas que o usuário não respondeu ainda' do
+      expect(user.pending_proposals([proposal])).to include(proposal)
+    end
+
+    it 'retorna propostas que o usuário não respondeu que sim' do
+      proposal.answer(user, true)
+
+      expect(user.pending_proposals([proposal])).to be_empty
+    end
+
+    it 'retorna propostas que o usuário não respondeu que não' do
+      proposal.answer(user, false)
+
+      expect(user.pending_proposals([proposal])).to be_empty
+    end
+  end
+
   describe '#answers' do
     describe 'direction' do
       it 'forward' do

@@ -39,6 +39,10 @@ class User < ApplicationRecord
     proposals.select { |proposal| proposal.able_to_accept? self }
   end
 
+  def pending_proposals(proposals)
+    proposals(proposals).select { |proposal| answer(proposal).nil? }
+  end
+
   def matches(matches)
     matches.select { |match| match.users.include? self }
   end

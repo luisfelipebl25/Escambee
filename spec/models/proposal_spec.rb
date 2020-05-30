@@ -14,7 +14,7 @@ RSpec.describe Proposal do
       expect(build :proposal, games: games).to_not be_valid
     end
   end
-  
+
   describe '#answer' do
     context 'Usuário não possui jogo' do
       let(:invalid_user) { create :user, owns: [], wishes: [proposal.second_game] }
@@ -46,6 +46,34 @@ RSpec.describe Proposal do
       proposal.answer(user_one, true)
 
       expect { proposal.answer(user_one, false) }.to_not change(proposal.answers, :count)
+    end
+  end
+
+  describe '#given_game' do
+    context 'troca direta' do
+      it 'retorna o jogo que o usuário entregaria, caso aceitasse a oferta' do
+        expect(proposal.given_game(user_one)).to eq(games.first)
+      end
+    end
+
+    context 'troca inversa' do
+      it 'retorna o jogo que o usuário entregaria, caso aceitasse a oferta' do
+        expect(proposal.given_game(user_two)).to eq(games.second)
+      end
+    end
+  end
+
+  describe '#received_game' do
+    context 'troca direta' do
+      it 'retorna o jogo que o usuário entregaria, caso aceitasse a oferta' do
+        expect(proposal.received_game(user_one)).to eq(games.second)
+      end
+    end
+
+    context 'troca inversa' do
+      it 'retorna o jogo que o usuário entregaria, caso aceitasse a oferta' do
+        expect(proposal.received_game(user_two)).to eq(games.first)
+      end
     end
   end
 
