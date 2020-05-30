@@ -69,6 +69,7 @@
                   <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, match.proposal.received_game(current_user).id, 'name')%></h6>
                 </div>
               </div>
+              <p> Trocar com <%= match.users.find { |user| user != current_user }.name.camelize %>?</p>
               <div class="card-footer text-center">
                 <%= link_to 'Trocar', answer_match_path(answer: true, match_id: match.id), method: :post, remote: true, class: "btn btn-success"%>
                 <%= link_to 'Não trocar', answer_match_path(answer: false, match_id: match.id), method: :post, remote: true, class: "btn btn-danger"%>
