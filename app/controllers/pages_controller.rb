@@ -11,16 +11,16 @@ class PagesController < ApplicationController
   def profile
     match = GameExchange::Matcher.new current_user.gamelist
     match.proposals.each(&:save!)
-    @proposals = current_user.proposals(Proposal.all)
+    @proposals = current_user.pending_proposals(Proposal.all)
 
     @exchanges = current_user.exchanges
-  end  
+  end
 
   def collection
     @wishes = current_user.wishes
     @owns = current_user.owns
   end
-  
+
   def search
     @games = GiantBomb::Search.new.query(search_params).resources('game').fetch
     paginate(@games, 8)
