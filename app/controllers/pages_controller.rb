@@ -12,7 +12,9 @@ class PagesController < ApplicationController
     match = GameExchange::Matcher.new current_user.gamelist
     match.proposals.each(&:save!)
     @proposals = current_user.proposals(Proposal.all)
-  end
+
+    @exchanges = current_user.exchanges
+  end  
 
   def collection
     @wishes = current_user.wishes

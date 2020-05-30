@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="h-100">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +11,7 @@
     <%= favicon_link_tag asset_path('bee.ico') %>
   </head>
   
-  <body class="h-100" style="min-height: 100vh;">
+  <body class="d-flex flex-column h-100">
   <div class="header">
     <% unless !user_signed_in? %>
       <nav class="navbar border-bottom navbar-expand-lg navbar-light bg-light">
@@ -89,11 +89,12 @@
           <%= yield %>
         </div>
       </div>
+  
     <% else %>
       <%= yield %>
     <% end %>
-
-  <footer class="py-4 bg-dark footer text-white-50">
+  
+  <footer class="py-4 bg-dark footer text-white-50 mt-auto">
     <div class="container text-center">
       <small>Copyright &copy; Escambee</small>
     </div>
