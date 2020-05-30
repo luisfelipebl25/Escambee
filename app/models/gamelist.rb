@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gamelist
   include Enumerable
   delegate :to_a, :empty?, to: :list
@@ -5,7 +7,7 @@ class Gamelist
   def initialize(user, method, entity)
     @user = user
     @method = method
-    @another_method = [:wishes, :owns].find {|m| m != method }
+    @another_method = %i[wishes owns].find { |m| m != method }
     @entity = entity
   end
 

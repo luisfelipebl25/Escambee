@@ -1,19 +1,18 @@
 class PagesController < ApplicationController
-  
   def index
     @games = GiantBomb::Game.list.shuffle
     paginate(@games, 12)
   end
-  
+
   def paginate(games, n_games)
-    @results = Kaminari.paginate_array(games).page(params[:page]).per(n_games)   
-  end 
+    @results = Kaminari.paginate_array(games).page(params[:page]).per(n_games)
+  end
 
   def profile
-    match = GameExchange::Matcher.new current_user.wishlist.to_a + current_user.ownlist.to_a
-    proposals = match.proposals.each(&:save!)
+    match = GameExchange::Matcher.new current_user.gamelist
+    match.proposals.each(&:save!)
     @proposals = current_user.proposals(Proposal.all)
-  end  
+  end
 
   def collection
     @wishes = current_user.wishes
@@ -21,19 +20,17 @@ class PagesController < ApplicationController
   end 
   
   def search
-    search_params
-    @games = GiantBomb::Search.new().query(@search).resources('game').fetch
+    @games = GiantBomb::Search.new.query(search_params).resources('game').fetch
     paginate(@games, 8)
-  end 
+  end
 
   def find_game(id)
     GiantBomb::Game.detail(id)
-  end 
+  end
 
   private
+
   def search_params
-    if params[:search]
-      @search = params[:search]
-    end
+    params[:search]
   end
 end

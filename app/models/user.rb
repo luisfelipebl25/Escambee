@@ -19,6 +19,10 @@ class User < ApplicationRecord
     Gamelist.new self, :owns, Own
   end
 
+  def gamelist
+    wishlist.to_a + ownlist.to_a
+  end
+
   def wishes?(game)
     wishlist.include? game
   end
