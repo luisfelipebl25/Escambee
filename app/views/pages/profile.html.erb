@@ -19,13 +19,13 @@
             <div class="card">
               <div class="card-body d-flex align-items-center">
                 <div>
-                  <%= image_tag find_game(fetcher, proposal.first_game_id, 'image'), class: "img-fluid" %>
-                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.first_game_id, 'name') %></h6>
+                  <%= image_tag find_game(fetcher, proposal.given_game(current_user).id, 'image'), class: "img-fluid" %>
+                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.given_game(current_user).id, 'name') %></h6>
                 </div>
                 <div class="px-3"><i class="fas fa-arrow-right fa-2x text-secondary"></i></div>
                 <div>
-                  <%= image_tag find_game(fetcher, proposal.second_game_id, 'image'), class: "img-fluid" %>
-                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.second_game_id, 'name')%></h6>
+                  <%= image_tag find_game(fetcher, proposal.received_game(current_user).id, 'image'), class: "img-fluid" %>
+                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.received_game(current_user).id, 'name')%></h6>
                 </div>
               </div>
               <div class="card-footer text-center">
