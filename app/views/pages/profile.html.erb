@@ -30,8 +30,10 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <%= link_to 'Trocar', answer_proposal_path(answer: true, proposal_id: proposal.id), method: 'post', remote: 'true', class: "btn btn-success"%>
-                <%= link_to 'Não trocar', answer_proposal_path(answer: false, proposal_id: proposal.id), method: 'post', remote: 'true', class: "btn btn-danger"%>
+                <div class="btns">
+                  <%= link_to 'Trocar', answer_proposal_path(answer: true, proposal_id: proposal.id), method: 'post', remote: 'true', class: "btn btn-success accept"%>
+                  <%= link_to 'Não trocar', answer_proposal_path(answer: false, proposal_id: proposal.id), method: 'post', remote: 'true', class: "btn btn-danger reject"%>
+                </div>
               </div>
             </div>
           </div>
