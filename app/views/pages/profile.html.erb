@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
           <nav class="navbar navbar-dark bg-primary">
@@ -15,16 +15,17 @@
         <% else %>
         <% fetcher = Resource::GameFetcher.new GiantBomb::Game.method(:detail) %>
         <% @proposals.each do |proposal| %>
-          <div class="col-md-6 mt-3">
+          <div class="col-md-12 mt-3">
             <div class="card">
-              <div class="card-body d-flex align-items-center">
-                <div>
-                  <%= image_tag find_game(fetcher, proposal.first_game_id, 'image'), class: "img-fluid" %>
+              <div class="card-body d-flex">
+                <div class="proposal-div">
+                  <%= image_tag find_game(fetcher, proposal.first_game_id, 'image'), class: "proposal-img"
+                  %>
                   <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.first_game_id, 'name') %></h6>
                 </div>
-                <div class="px-3"><i class="fas fa-arrow-right fa-2x text-secondary"></i></div>
-                <div>
-                  <%= image_tag find_game(fetcher, proposal.second_game_id, 'image'), class: "img-fluid" %>
+                <div class="arrow-div px-3 text-center align-self-center"><i class="fas fa-arrow-right fa-2x text-secondary"></i></div>
+                <div class="proposal-div">
+                  <%= image_tag find_game(fetcher, proposal.second_game_id, 'image'), class: " proposal-img" %>
                   <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.second_game_id, 'name')%></h6>
                 </div>
               </div>
@@ -38,17 +39,46 @@
       <% end %>  
       </div>
     </div> <!-- Col-md-9 (Trocas) -->  
-    <div class="col-md-3">
-      <nav class="navbar navbar-dark bg-warning">
-        <h2><a class="navbar-brand text-dark">Histórico</a></h2>
-      </nav>
-      <% if @exchanges.empty? %>
-        <h6 class="text-muted mt-4">Você ainda não concluiu nenhuma troca.</h6>
-      <% else %>
-        <% @exchanges.each do |exchange| %>
 
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-dark bg-warning">
+            <h2><a class="navbar-brand text-dark">Propostas de trocas com usuários</a></h2>
+          </nav>
+        </div>
+        <% if @proposals.empty? %>
+          <div class="col-md-12 text-center mt-3">
+            <h4>Nenhuma troca disponível.</h4>
+          </div>  
+        <% else %>
+        <% fetcher = Resource::GameFetcher.new GiantBomb::Game.method(:detail) %>
+        <% @proposals.each do |proposal| %>
+          <div class="col-md-12 mt-3">
+            <div class="card">
+              <div class="card-body d-flex">
+                <div class="proposal-div">
+                  <%= image_tag find_game(fetcher, proposal.first_game_id, 'image'), class: "proposal-img"
+                  %>
+                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.first_game_id, 'name') %></h6>
+                </div>
+                <div class="arrow-div px-3 text-center align-self-center"><i class="fas fa-arrow-right fa-2x text-secondary"></i></div>
+                <div class="proposal-div">
+                  <%= image_tag find_game(fetcher, proposal.second_game_id, 'image'), class: " proposal-img" %>
+                  <h6 class="mt-3 mb-0 text-center"><%= find_game(fetcher, proposal.second_game_id, 'name')%></h6>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <%= link_to 'Trocar', answer_proposal_path(answer: true), class: "btn btn-success"%>
+                <%= link_to 'Não trocar', answer_proposal_path(answer: false), class: "btn btn-danger"%>
+              </div>
+            </div>
+          </div>
         <% end %>
-      <% end %>
+      <% end %>  
+      
+      </div>
+     
     </div>
   </div>
 </div>

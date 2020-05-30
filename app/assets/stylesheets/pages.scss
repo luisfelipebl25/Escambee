@@ -70,11 +70,28 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.game-pic {
+.game-pic{
   width: 120px;
   height: 200px;
   max-height: 200px;
   object-fit: cover;
+}
+
+.proposal-img {
+  width: 100%;
+  height: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.proposal-div {
+  flex-basis: 40% !important; 
+  flex-grow: 0 !important
+}
+
+.arrow-div {
+  flex-basis: 20%; 
+  flex-grow: 0 !important;
 }
 
 .card-img-overlay {

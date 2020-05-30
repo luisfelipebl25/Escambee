@@ -20,8 +20,8 @@
             <span class="navbar-text">
               <i class="far fa-user mr-2"></i>
             </span>
-            
-            <div><%= link_to "Editar informações de conta", edit_user_registration_path, class: "nav-item nav-link" %></div>
+            <div>
+            <%= link_to "Editar informações de conta", edit_user_registration_path, class: "nav-item nav-link" %></div>
             <%= link_to "Encerrar sessão", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>   
           </div>
         </div>
@@ -64,7 +64,7 @@
           
             <div class="d-flex flex-column">
               <div><%= link_to 'Perfil', profile_path %> </div>
-              <small class="text-muted">Trocas e recebidos</small>
+              <small class="text-muted"><%= current_user.name.truncate(18) %></small>
             </div>
           </div> 
           <% else %>
@@ -84,12 +84,16 @@
   
   
     <% if devise_controller? %>
-      <div class="modal-dialog modal-dialog-centered text-center">
-        <div class="col-md-12 col-sm-12 p-4 mx-auto container-wrapper modal-content">
-          <%= yield %>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 text-center">
+            <div class="card p-4">
+              <%= yield %>      
+            </div>     
+          </div>
         </div>
       </div>
-  
+      
     <% else %>
       <%= yield %>
     <% end %>
