@@ -7,15 +7,19 @@
           <div class="card-body">
             <h5 class="card-title"><%= game['name']%></h5>
             <% if user_signed_in? %>
+              <% if current_user.can_add_in_list?(Game.new(game['id'].to_s)) %> 
+                <div class="btns">
+                  <%= link_to 'Quero', add_to_wishlist_path(id: game['id']), 
+                  class: 'btn btn-primary add', method: :post, remote: true %>
+                  <%= link_to 'Tenho', add_to_ownlist_url(id: game['id']), 
+                  class: 'btn btn-warning add', method: :post, remote: true %> 
+                </div>     
               
-              <%= link_to 'Quero', add_to_wishlist_path(id: game['id']), class: 'btn btn-primary',
-                  method: :post, remote: true %>
-
-              <%= link_to 'Tenho', add_to_ownlist_url(id: game['id']), class: 'btn btn-warning',
-                  method: :post, remote: true %>
-                 
+              <% else %>
+                <p class="mb-0">Jogo já adicionado na sua <%= link_to 'coleção', collection_path %>.</p>
+              <% end %>
             <% else %>
-              <p class="text-muted">
+              <p class="text-muted mb-0">
                 <%= link_to 'Entre', new_user_session_path%> ou 
                 <%= link_to 'registre-se', new_user_registration_path %> para trocar/receber este jogo!
               </p>
