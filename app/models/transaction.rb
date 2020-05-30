@@ -5,17 +5,16 @@ class Transaction < ApplicationRecord
   validates_presence_of :user, :proposal
 
   def given
-    @given ||= user.answer(proposal).to_give
+    user.answer(proposal).to_give
   end
 
   def received
-    @received ||= user.answer(proposal).to_receive
+    user.answer(proposal).to_receive
   end
 
   def execute
     return false if executed?
 
-    given; received
     user.wishlist.delete(received)
     user.ownlist.delete(given)
     user.ownlist.push received
