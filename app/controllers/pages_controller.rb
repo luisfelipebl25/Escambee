@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   def collection
     @wishes = current_user.wishes
     @owns = current_user.owns
-  end 
+  end
   
   def search
     @games = GiantBomb::Search.new.query(search_params).resources('game').fetch

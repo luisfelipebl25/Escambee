@@ -1,4 +1,5 @@
 <% unless !user_signed_in? %>
+<% fetcher = Resource::GameFetcher.new GiantBomb::Game.method(:detail) %>
 
   <div class="container">
     <div class="row games-row">
@@ -13,13 +14,12 @@
             </div>
           <% else %>
             <% @wishes.each do |wish| %>
-              <%=  %>
               <div class="col-md-4 col-6 card-col">
                 <div class="card mb-0 bg-dark text-white">
-                  <%= image_tag find_game(wish.game_id, 'image'), class: "card-img game-pic" %> 
+                  <%= image_tag find_game(fetcher, wish.game_id, 'image'), class: "card-img game-pic" %> 
                   
                   <div class="card-img-overlay flex-column d-flex justify-content-center text-center">
-                    <p class="font-weight-bold"><%= find_game(wish.game_id, 'name') %></p>
+                    <p class="font-weight-bold"><%= find_game(fetcher, wish.game_id, 'name') %></p>
                     <%= link_to 'Remover', remove_from_wishlist_path(id: wish.game_id), method: :delete,
                     remote: true, class: "btn btn-danger delete " %>
                   </div>
@@ -43,9 +43,9 @@
             <% @owns.each do |own| %>
             <div class="col-md-4 col-6 card-col">
               <div class="card mb-0 bg-dark text-white">
-                <%= image_tag find_game(own.game_id, 'image'), class: "card-img game-pic" %>
+                <%= image_tag find_game(fetcher, own.game_id, 'image'), class: "card-img game-pic" %>
                 <div class="card-img-overlay flex-column d-flex justify-content-center text-center">
-                  <p class="font-weight-bold"><%= find_game(own.game_id, 'name') %></p>
+                  <p class="font-weight-bold"><%= find_game(fetcher, own.game_id, 'name') %></p>
                   <%= link_to 'Remover', remove_from_ownlist_path(id: own.game_id), method: :delete,
                   remote: true, class: "btn btn-danger delete " %>
                 </div>

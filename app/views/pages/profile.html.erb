@@ -10,13 +10,14 @@
         <h5 class="text-secondary mt-5">Nenhuma proposta disponível.</h5>
       </div>
     <% else %>
+      <% fetcher = Resource::GameFetcher.new GiantBomb::Game.method(:detail) %>
       <% @proposals.each do |proposal| %>
         <div class="col-md-3 card-col">
           <div class="card">
-            <%= image_tag find_game(proposal.first_game_id, 'image'), class: "card-img-top" %>
+            <%= image_tag find_game(fetcher, proposal.first_game_id, 'image'), class: "card-img-top" %>
             
             <div class="card-body">
-              <h5 class="card-title mb-0"><%= find_game(proposal.first_game_id, 'name') %></h5>
+              <h5 class="card-title mb-0"><%= find_game(fetcher, proposal.first_game_id, 'name') %></h5>
             </div>
             <div class="card-footer text-center">
               <%= link_to 'Trocar', answer_proposal_path(answer: true), method: :post, 
@@ -26,7 +27,7 @@
             </div>
           </div> 
         </div>
-        <%= image_tag find_game(proposal.second_game_id, 'image'), class: "img-fluid" %>
+        <%= image_tag find_game(fetcher, proposal.second_game_id, 'image'), class: "img-fluid" %>
       <% end %>
     <% end %>
   </div>
