@@ -25,8 +25,13 @@ class UsersController < ApplicationController
   end
 
   def answer_match
-    Match.find(params['match_id'])
-         .answer(current_user, params['answer'] == 'true')
+    match = Match.find(params['match_id'])
+    match.answer(current_user, params['answer'] == 'true')
+
+    return unless match.confirmed?
+
+    exchange = GameExchange::Exchange.new(match.users.first, match.users.second, match.proposal)
+    exchange.exchange if exchange.matched?
   end
 
   def create_game(params)
