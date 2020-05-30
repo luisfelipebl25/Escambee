@@ -47,6 +47,10 @@ class User < ApplicationRecord
     matches.select { |match| match.users.include? self }
   end
 
+  def pending_matches(matches)
+    matches(matches).select { |match| answer(match).nil? }
+  end
+
   def exchange(proposal)
     return unless accepted?(proposal)
 

@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     @proposals = current_user.pending_proposals(Proposal.all)
 
     match.generate_matches(Proposal.all).each(&:save)
-    @matches = current_user.matches(Match.all)
+    @matches = current_user.pending_matches(Match.all)
   end
 
   def collection
