@@ -20,4 +20,16 @@ $(document).ready(function() {
       $(this).closest('.btns').replaceWith('<i class="fas fa-times text-danger"></i>&nbsp;Proposta rejeitada.')
     })
   });
+
+  $('.accept-exchange').bind('ajax:success', function() {
+    $(this).fadeOut(function() {
+      $(this).closest('.btns').replaceWith('<i class="fas fa-check text-success"></i>&nbsp;Troca realizada com sucesso!').closest('.user-info').addClass('d-flex');
+    })
+  });
+
+  $('.deny-exchange').bind('ajax:success', function() {
+    $(this).fadeOut(function() {
+      $(this).closest('.btns').replaceWith('<i class="fas fa-times text-danger"></i>&nbsp;Troca negada.')
+    })
+  });
 })
